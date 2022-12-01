@@ -40,20 +40,18 @@ def findLargestGroup(fileName):
   return maxSum, maxGroup
 
 @timeit
-def sum3LargestGroups(filename):
+def sum3LargestGroups(fileName):
   # Read the lines of the input file
-  with open(filename, "r") as f:
+  with open(fileName, "r") as f:
     lines = f.readlines()
 
   sums = []
   sum = 0
-  group = 0
   for line in lines:
     # Create a new group if the line is empty
     if line == "\n":
       sums.append(sum)
       sum = 0
-      group += 1
     else:
       # Remove the newline character and add the number to the sum
       sum += int(line.strip())
