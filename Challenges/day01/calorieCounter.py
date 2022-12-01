@@ -11,7 +11,7 @@ from timeIt import timeit
 import sys
 
 @timeit
-def findGroup(fileName):
+def findLargestGroup(fileName):
   # Read the lines of the input file
   with open(fileName, "r") as f:
     lines = f.readlines()
@@ -37,5 +37,5 @@ def findGroup(fileName):
 
 if __name__ == "__main__":
   fileName = sys.argv[1]
-  maxSum, maxGroup = findGroup(fileName)
+  maxSum, maxGroup = findLargestGroup(fileName)
   print("The largest sum is {} in group {}".format(maxSum, maxGroup))
