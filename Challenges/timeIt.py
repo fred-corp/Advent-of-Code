@@ -13,6 +13,6 @@ def timeit(my_func):
     output = my_func(*args, **kw)
     tEnd = time.time()
     
-    print('"{}" took {:.3f} ms to execute\n'.format(my_func.__name__, (tEnd - tStart) * 1000))
+    print('\n"{}" took {:.3f} ms to execute'.format(my_func.__name__, (tEnd - tStart) * 1000))
     return output
   return timed

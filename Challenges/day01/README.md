@@ -63,13 +63,13 @@ To run the solution, you need a working installation of [Python 3](https://www.p
 python3 calorieCounter.py puzzleInput.txt
 ```
 
-The outout (with the specified dataset) should be:
+The output (with the specified dataset) should be:
 
 ```sh
+
 "findLargestGroup" took 1.471 ms to execute
-
 The largest sum is 70509 in group 171
-"sum3LargestGroups" took 0.848 ms to execute
 
+"sum3LargestGroups" took 0.848 ms to execute
 The sum of the 3 largest groups is 208567 (70509 + 69894 + 68164)
 ```
