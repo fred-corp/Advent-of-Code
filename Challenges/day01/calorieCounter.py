@@ -11,8 +11,9 @@
 # Solution by Frédéric Druppel
 # See repo for license
 
-from timeIt import timeit
 import sys
+sys.path.insert(0, '..')
+from timeIt import timeit
 
 @timeit
 def findLargestGroup(fileName):
