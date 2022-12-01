@@ -52,3 +52,24 @@ To avoid this unacceptable situation, the Elves would instead like to know the t
 In the example above, the top three Elves are the fourth Elf (with `24000` Calories), then the third Elf (with `11000` Calories), then the fifth Elf (with `10000` Calories). The sum of the Calories carried by these three elves is **`45000`**.
 
 Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
+
+## Solution
+
+The challenge wad done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 calorieCounter.py puzzleInput.txt
+```
+
+The outout (with the specified dataset) should be:
+
+```sh
+"findLargestGroup" took 1.471 ms to execute
+
+The largest sum is 70509 in group 171
+"sum3LargestGroups" took 0.848 ms to execute
+
+The sum of the 3 largest groups is 208567 (70509 + 69894 + 68164)
+```
