@@ -55,7 +55,7 @@ Find the top three Elves carrying the most Calories. How many Calories are those
 
 ## Solution
 
-The challenge wad done in Python, with a timer decorator to measure the execution time.
+The challenge was done in Python, with a timer decorator to measure the execution time.
 
 To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
 
