@@ -45,3 +45,27 @@ The total score is still calculated in the same way, but now you need to figure 
 Now that you're correctly decrypting the ultra top secret strategy guide, you would get a total score of **12**.
 
 Following the Elf's instructions for the second column, **what would your total score be if everything goes exactly according to your strategy guide?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 strategy.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part one :
+
+"countScore" took 4.305 ms to execute
+The score is 13052
+
+Part two :
+
+"countScore2" took 1.182 ms to execute
+The score is 13693
+```
