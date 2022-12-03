@@ -10,6 +10,17 @@
 # types A through Z have priorities 27 through 52.
 #
 #
+# Part two :
+#
+# Elves are now divided in groups of 3; each group has a badge that corresponds
+# to the only item carried by the group, and it has to be determined from the content of
+# the rucksacks.
+# Every set of 3 lines in the input file represents a group of 3 elves.
+# The priority of a group corresponds to the value of the badge of the group.
+# The objective if to calculate the sum of the priorities of all the groups.
+# 
+# 
+#
 # Solution by Frédéric Druppel
 # See repo for license
 
@@ -41,7 +52,35 @@ def calculatePrioritySum(fileName):
       
   return priority
 
+@timeit
+def calculateGroupPrioritySum(fileName):
+  with open(fileName, "r") as f:
+    lines = f.readlines()
+  
+  priority = 0
+  for i in range(0, len(lines), 3):
+    line1 = lines[i].strip()
+    line2 = lines[i+1].strip()
+    line3 = lines[i+2].strip()
+
+    # Find common items in all 3 lines
+    commonItems = set(line1).intersection(set(line2)).intersection(set(line3))
+
+    # Calculate priority
+    for item in commonItems:
+      if item.islower():
+        priority += ord(item) - 96
+      else:
+        priority += ord(item) - 38
+
+  return priority
+
+
 
 
 if __name__ == '__main__':
+  print("Part one :")
   print("Sum of priorities is : {}".format(calculatePrioritySum(sys.argv[1])))
+  print()
+  print("Part two :")
+  print("Sum of group priorities is : {}".format(calculateGroupPrioritySum(sys.argv[1])))
