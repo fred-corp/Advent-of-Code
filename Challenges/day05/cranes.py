@@ -18,9 +18,34 @@ from timeIt import timeit
 
 @timeit
 def moveStacks(filename):
+  lines = parseFile(filename)
+  
+  stackLines, stacks, moveLines = findStackAndMoveLines(lines)
+
+  stackList = findStacks(stackLines, stacks)
+
+  # perform the moves
+  # the moves look like "move 4 from 6 to 1"
+  for move in moveLines:
+    # find the number of items to move
+    items = int(move.split()[1])
+    # find the stack number to move from
+    fromStack = int(move.split()[3])-1
+    # find the stack number to move to
+    toStack = int(move.split()[5])-1
+    # move the items from the fromStack to the toStack
+    for i in range(items):
+      stackList[toStack].append(stackList[fromStack].pop())
+
+  # return the top items of each stack
+  return [stackList[i][-1] for i in range(stacks)]
+
+def parseFile(filename):
   with open(filename, 'r') as f:
     lines = f.readlines()
-  
+  return lines
+
+def findStackAndMoveLines(lines):
   stackLines = []
   moveLines = []
   for line in lines:
@@ -31,12 +56,15 @@ def moveStacks(filename):
       break
     stackLines.append(line)
   
-  # the rest of the lines are the moves
-  moveLines = lines[len(stackLines)+1:]
-
   # find the number of stacks from the last line that looks like " 1   2   3 "
   stacks = len(stackLines[-1].split())
   
+  # the rest of the lines are the moves
+  moveLines = lines[len(stackLines)+1:]
+
+  return stackLines, stacks, moveLines
+
+def findStacks(stackLines, stacks):
   # create a list of stacks, each stack is a list of items
   stackList = []
   for i in range(stacks):
@@ -67,23 +95,7 @@ def moveStacks(filename):
         # if the line is too short, the stack is empty
         pass
 
-  # perform the moves
-  # the moves look like "move 4 from 6 to 1"
-  for move in moveLines:
-    # find the number of items to move
-    items = int(move.split()[1])
-    # find the stack number to move from
-    fromStack = int(move.split()[3])-1
-    # find the stack number to move to
-    toStack = int(move.split()[5])-1
-    # move the items from the fromStack to the toStack
-    for i in range(items):
-      stackList[toStack].append(stackList[fromStack].pop())
-
-  # return the top items of each stack
-  return [stackList[i][-1] for i in range(stacks)]
-
-
+  return stackList
 
 if __name__ == '__main__':
   print("Part one:")
