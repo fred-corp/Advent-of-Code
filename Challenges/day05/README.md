@@ -126,3 +126,29 @@ Finally, a single crate is still moved from stack 1 to stack 2, but now it's cra
 In this example, the CrateMover 9001 has put the crates in a totally different order: **`MCD`**.
 
 Before the rearrangement process finishes, update your simulation so that the Elves know where they should stand to be ready to unload the final supplies. **After the rearrangement procedure completes, what crate ends up on top of each stack?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 cranes.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part one:
+
+"moveStacks9000" took 1.800 ms to execute
+Top items after moves:
+VWLCWGSDQ
+
+Part two:
+
+"moveStacks9001" took 0.999 ms to execute
+Top items after moves:
+TCGLQSLPW
+```
