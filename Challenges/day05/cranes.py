@@ -8,6 +8,8 @@
 # The moves are performed in the order they are listed.
 # The program should output the top items of each stack after all the moves have been performed.
 #
+# Part two :
+# Same as part one, but this time multiple items can be moved at once, so their order stays the same as in the original stack.
 #
 # Solution by Frédéric Druppel
 # See repo for license
@@ -17,7 +19,7 @@ sys.path.insert(0, '..')
 from timeIt import timeit
 
 @timeit
-def moveStacks(filename):
+def moveStacks9000(filename):
   lines = parseFile(filename)
   
   stackLines, stacks, moveLines = findStackAndMoveLines(lines)
@@ -36,6 +38,31 @@ def moveStacks(filename):
     # move the items from the fromStack to the toStack
     for i in range(items):
       stackList[toStack].append(stackList[fromStack].pop())
+
+  # return the top items of each stack
+  return [stackList[i][-1] for i in range(stacks)]
+
+
+@timeit
+def moveStacks9001(filename):
+  lines = parseFile(filename)
+  
+  stackLines, stacks, moveLines = findStackAndMoveLines(lines)
+
+  stackList = findStacks(stackLines, stacks)
+
+  for move in moveLines:
+    items = int(move.split()[1])
+    fromStack = int(move.split()[3])-1
+    toStack = int(move.split()[5])-1
+
+    # move the items from the fromStack to the toStack
+    # This time, it is possible to move multiple items at once
+    # so they stay in the same order
+    stackList[toStack].extend(stackList[fromStack][-items:])
+    stackList[fromStack] = stackList[fromStack][:-items]
+
+    
 
   # return the top items of each stack
   return [stackList[i][-1] for i in range(stacks)]
@@ -99,7 +126,13 @@ def findStacks(stackLines, stacks):
 
 if __name__ == '__main__':
   print("Part one:")
-  topAfterMoves = moveStacks(sys.argv[1])
+  topAfterMoves9000 = moveStacks9000(sys.argv[1])
   print("Top items after moves:")
   # Print the top items of each stack as a single line
-  print(''.join(topAfterMoves))
+  print(''.join(topAfterMoves9000))
+  print()
+  print("Part two:")
+  topAfterMoves9001 = moveStacks9001(sys.argv[1])
+  print("Top items after moves:")
+  # Print the top items of each stack as a single line
+  print(''.join(topAfterMoves9001))
