@@ -66,11 +66,11 @@ The output (with the specified dataset) should be:
 ```sh
 Part one :
 
-"findFirstTimeMarker" took 1.558 ms to execute
+"findFirstTimeMarker" took 0.874 ms to execute
 1876
 
 Part two :
 
-"findFirstMessageMarker" took 3.807 ms to execute
+"findFirstMessageMarker" took 1.844 ms to execute
 2202
 ```

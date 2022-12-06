@@ -28,7 +28,7 @@ def findFirstTimeMarker(filename):
   # find the first 4 characters that are different from each other
   # the time marker starts after that
   for i in range(len(data)):
-    window = [data[0+i], data[1+i], data[2+i], data[3+i]]
+    window = data[i:i+4]
     if len(set(window)) == 4:
       return i+4
 
@@ -42,7 +42,7 @@ def findFirstMessageMarker(filename):
   # find the first 14 characters that are different from each other
   # the message marker starts after that
   for i in range(len(data)):
-    window = [data[0+i], data[1+i], data[2+i], data[3+i], data[4+i], data[5+i], data[6+i], data[7+i], data[8+i], data[9+i], data[10+i], data[11+i], data[12+i], data[13+i]]
+    window = data[i:i+14]
     if len(set(window)) == 14:
       return i+14
 
