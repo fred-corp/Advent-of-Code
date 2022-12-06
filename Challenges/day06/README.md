@@ -50,3 +50,27 @@ Here are the first positions of start-of-message markers for all of the above ex
 * `zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw`: first marker after character **`26`**
 
 **How many characters need to be processed before the first start-of-message marker is detected?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 datastreamProcessor.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part one :
+
+"findFirstTimeMarker" took 1.558 ms to execute
+1876
+
+Part two :
+
+"findFirstMessageMarker" took 3.807 ms to execute
+2202
+```
