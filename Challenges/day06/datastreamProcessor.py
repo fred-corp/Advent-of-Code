@@ -27,10 +27,7 @@ def findFirstTimeMarker(filename):
 
   # find the first 4 characters that are different from each other
   # the time marker starts after that
-  for i in range(len(data)):
-    window = data[i:i+4]
-    if len(set(window)) == 4:
-      return i+4
+  return findNDifferentCharacters(data, 4)
 
 
 @timeit
@@ -41,10 +38,14 @@ def findFirstMessageMarker(filename):
 
   # find the first 14 characters that are different from each other
   # the message marker starts after that
+  return findNDifferentCharacters(data, 14)
+
+def findNDifferentCharacters(data, n):
+  # find the first n characters that are different from each other
   for i in range(len(data)):
-    window = data[i:i+14]
-    if len(set(window)) == 14:
-      return i+14
+    window = data[i:i+n]
+    if len(set(window)) == n:
+      return i+n
 
 if __name__ == "__main__":
   print("Part one :")
