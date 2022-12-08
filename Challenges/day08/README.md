@@ -77,3 +77,27 @@ However, you can do even better: consider the tree of height `5` in the middle o
 This tree's scenic score is **`8`** (`2 * 2 * 1 * 2`); this is the ideal spot for the tree house.
 
 Consider each tree on your map. **What is the highest scenic score possible for any tree?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 forester.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part one : 
+
+"countVisibleTrees" took 2.105 ms to execute
+1796
+
+Part two : 
+
+"getHighestScenicScore" took 1.676 ms to execute
+288120
+```
