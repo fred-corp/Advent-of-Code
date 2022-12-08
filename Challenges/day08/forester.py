@@ -6,6 +6,11 @@
 # that are visible from the edges (meaning that between them and the edge no other tree should be taller).
 #
 #
+# Part two :
+# Find the tree with the highest scenic score. This score is calculated by multiplying
+# the viewing distance in each direction (up, down, left, right).
+#
+#
 # Solution by Frédéric Druppel
 # See repo for license
 
@@ -33,10 +38,53 @@ def countVisibleTrees(filename):
         positions.append((i, j))
 
   positions = list(set(positions))
-  print(positions)
   count += len(positions)
 
   return count
+
+@timeit
+def getHighestScenicScore(filename):
+  treeMatrix = convertFileToMatrix(filename)
+  treeMatrixInv = [[treeMatrix[j][i] for j in range(len(treeMatrix))] for i in range(len(treeMatrix[0]))]
+  scenicScores = []
+  
+  for i in range(len(treeMatrix)):
+    for j in range(len(treeMatrix[i])):
+      tree = treeMatrix[i][j]
+      score = 0
+      multiplierUp = 0
+      multiplierDown = 0
+      multiplierLeft = 0
+      multiplierRight = 0
+      # check up for next tallest tree 
+      for u in range(i-1, -1, -1):
+        multiplierUp += 1
+        if treeMatrixInv[j][u] >= tree:
+          break
+
+      # check down for next tallest tree 
+      for d in range(i+1, len(treeMatrix)):
+        multiplierDown += 1
+        if treeMatrixInv[j][d] >= tree:
+          break
+
+      # check left for next tallest tree
+      for l in range(j-1, -1, -1):
+        multiplierLeft += 1
+        if treeMatrix[i][l] >= tree:
+          break
+
+      # check right for next tallest tree 
+      for r in range(j+1, len(treeMatrix[i])):
+        multiplierRight += 1
+        if treeMatrix[i][r] >= tree:
+          break
+
+      score = multiplierUp * multiplierDown * multiplierLeft * multiplierRight
+
+      scenicScores.append((score, tree, (i, j), (multiplierUp, multiplierLeft, multiplierDown, multiplierRight)))
+
+  return max(scenicScores)[0]
 
 
 
@@ -53,3 +101,6 @@ def convertFileToMatrix(filename):
 if __name__ == "__main__":
   print("Part one : ")
   print(countVisibleTrees(sys.argv[1]))
+  print()
+  print("Part two : ")
+  print(getHighestScenicScore(sys.argv[1]))
