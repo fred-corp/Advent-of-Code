@@ -703,3 +703,27 @@ Now, the tail (`9`) visits **`36`** positions (including s) at least once:
 ```
 
 Simulate your complete series of motions on a larger rope with ten knots. **How many positions does the tail of the rope visit at least once?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 ropePhysics.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part one :
+
+"countTailPositions" took 1.984 ms to execute
+6087
+
+Part two :
+
+"countArbitraryTailPositions" took 10.619 ms to execute
+2493
+```
