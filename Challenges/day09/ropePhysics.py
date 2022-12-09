@@ -123,12 +123,7 @@ def countArbitraryTailPositions(filename, pieces):
 
 
 def calcDistance(pos1, pos2):
-  if pos1[0] == pos2[0]:
-    return abs(pos1[1] - pos2[1])
-  elif pos1[1] == pos2[1]:
-    return abs(pos1[0] - pos2[0])
-  else:
-    return max(abs(pos1[0] - pos2[0]), abs(pos1[1] - pos2[1]))
+  return max(abs(pos1[0] - pos2[0]), abs(pos1[1] - pos2[1]))
 
 if __name__ == '__main__':
   print("Part one :")
