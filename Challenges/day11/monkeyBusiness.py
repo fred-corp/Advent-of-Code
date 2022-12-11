@@ -2,10 +2,11 @@
 # https://adventofcode.com/2022/day/11
 #
 # Part one :
-# Count the total number of times each monkey inspects items over 20 rounds, and multiply the number of times each monkey inspects an item.
+# Count the total number of times each monkey inspects items over 20 rounds, and multiply the number of times the two most active monkey inspects an item.
 # 
 # Part two :
 # Same as part one, but with 10000 rounds, and we do not divide the worry level the same way as in part one.
+# We'll need to save calculation time, so we'll use the modulo operator to reduce the worry level.
 #
 #
 # Solution by Frédéric Druppel
