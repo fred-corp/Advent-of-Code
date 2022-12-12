@@ -65,3 +65,29 @@ Now, there are six choices for starting position (five marked `a`, plus the squa
 This path reaches the goal in only **`29`** steps, the fewest possible.
 
 **What is the fewest steps required to move starting from any square with elevation a to the location that should get the best signal?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+> **Note:** I may have taken some inspiration from other solutions on the [subreddit](https://www.reddit.com/r/adventofcode/comments/zjnruc/2022_day_12_solutions/) as I was stuck in infinite loops and/or my answer wouldn't be right, even though I thought I had the right logic. Maybe I'll have to revisit this challenge later, or try it in a different language.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 monkeyBusiness.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part One: 
+
+"partOne" took 0.780 ms to execute
+50616
+
+Part Two: 
+
+"partTwo" took 404.982 ms to execute
+11309046332
+```
