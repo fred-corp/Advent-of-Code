@@ -156,3 +156,27 @@ For the example above, the result of putting the packets in the correct order is
 Afterward, locate the divider packets. To find the **decoder key** for this distress signal, you need to determine the indices of the two divider packets and multiply them together. (The first packet is at index 1, the second packet is at index 2, and so on.) In this example, the divider packets are **10th** and **14th**, and so the decoder key is **`140`**.
 
 Organize all of the packets into the correct order. **What is the decoder key for the distress signal?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 signalSorter.py puzzleInputTest.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part One :
+
+"sumSortedGroupIndexes" took 0.444 ms to execute
+13
+
+Part Two :
+
+"findDividerIndexProduct" took 0.446 ms to execute
+140
+```
