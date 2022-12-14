@@ -22,7 +22,7 @@ from timeIt import timeit
 import os
 
 @timeit
-def calcStaticSandParticles(filename, void = True):
+def calcStaticSandParticles(filename, void = True, saveGrids = True):
   with open(filename) as f:
     lines = f.readlines()
   lines = [line.strip() for line in lines]
@@ -86,8 +86,8 @@ def calcStaticSandParticles(filename, void = True):
     grid.append(['#' for x in range(minX, maxX+1)])
     maxY += 2
 
-
-  printGrid(grid)
+  if saveGrids:
+    printGrid(grid)
 
 
   # Fill the grid with sand from the source (500,0)
@@ -132,8 +132,8 @@ def calcStaticSandParticles(filename, void = True):
     x = 500-minX
     y = 0
   
-
-  printGrid(grid)
+  if saveGrids:
+    printGrid(grid)
   return particles
 
 
@@ -165,4 +165,4 @@ if __name__ == '__main__':
   print(calcStaticSandParticles(sys.argv[1]))
   print()
   print("Part two:")
-  print(calcStaticSandParticles(sys.argv[1], False))
+  print(calcStaticSandParticles(sys.argv[1], void=False))
