@@ -8,6 +8,7 @@
 import sys
 sys.path.insert(0, '..')
 from timeIt import timeit
+import os
 
 @timeit
 def calcStaticSandParticles(filename, void = True):
@@ -52,8 +53,9 @@ def calcStaticSandParticles(filename, void = True):
         for x in range(startPoint[0], endPoint[0]+1):
           grid[startPoint[1]-minY][x-minX] = '#'
 
-  # Add an empty column on the left and right
+  
   if void:
+    # Add an empty column on the left and right
     for row in grid:
       row.insert(0, '.')
       row.append('.')
@@ -93,7 +95,7 @@ def calcStaticSandParticles(filename, void = True):
       if grid[y+1][x] == '#':
         # Check if there is space to the bottom left
         if grid[y][x-1] == '.':
-          # Move down and left if there is no wall to the left
+          # Move down and left if there is nothing to the left
           if grid[y+1][x-1] == '.':
             x -= 1
             y += 1
@@ -101,7 +103,7 @@ def calcStaticSandParticles(filename, void = True):
             break
         # Check if there is space to the bottom right
         elif grid[y][x+1] == '.':
-          # Move down and right if there is no wall to the right
+          # Move down and right if there is nothing to the right
           if grid[y+1][x+1] == '.':
             x += 1
             y += 1
@@ -145,8 +147,23 @@ def calcStaticSandParticles(filename, void = True):
 
 
 def printGrid(grid):
-  for row in grid:
-    print(''.join(row))
+  if len(grid[0]) <= 100 and len(grid) <= 50:
+    for row in grid:
+      print(''.join(row))
+  # Save grid to file named as the input file
+  filename = sys.argv[1].split('.')[0] + '_grids.txt'
+  # If the file exists, append to the file
+  if os.path.isfile(filename):
+    with open(filename, 'a') as f:
+      f.write('\n\n')
+      for row in grid:
+        f.write(''.join(row) + '\n')
+  # If the file does not exist, create it
+  else:
+    with open(filename, 'w') as f:
+      for row in grid:
+        f.write(''.join(row) + '\n')
+
 
 
 
