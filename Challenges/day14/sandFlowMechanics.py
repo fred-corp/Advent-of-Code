@@ -1,6 +1,17 @@
 # Advent of Code 2022: Day 14: Regolith Reservoir
 # https://adventofcode.com/2022/day/14
 #
+# Part one :
+# From a file containing the coordinates of corners of walls, find
+# the number of sand particles that will be retained by the walls.
+# If there are no walls left, and the sand reaches the bottom of the
+# grid, the sand will fall into the void (and is thus not counted).
+#
+# Part two :
+# Same as part one, except that now there is a floor 2 levels below
+# the lowest wall. If the sand reaches it, it will be retained.
+# We're done when the sand reaches the 500, 0 coordinate.
+#
 #
 # Solution by Frédéric Druppel
 # See repo for license
