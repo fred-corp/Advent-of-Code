@@ -179,3 +179,27 @@ To find somewhere safe to stand, you'll need to simulate falling sand until a un
 ```
 
 Using your scan, simulate the falling sand until the source of the sand becomes blocked. **How many units of sand come to rest?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 sandFlowMechanics.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part one:
+
+"calcStaticSandParticles" took 16.277 ms to execute
+897
+
+Part two:
+
+"calcStaticSandParticles" took 451.917 ms to execute
+26683
+```
