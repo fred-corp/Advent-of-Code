@@ -102,30 +102,8 @@ def calcStaticSandParticles(filename, void = True):
   particles = 0
   while True :
     while y < maxY:
-      # Check if there is a wall below
-      if grid[y+1][x] == '#':
-        # Check if there is space to the bottom left
-        if grid[y][x-1] == '.':
-          # Move down and left if there is nothing to the left
-          if grid[y+1][x-1] == '.':
-            x -= 1
-            y += 1
-          else:
-            break
-        # Check if there is space to the bottom right
-        elif grid[y][x+1] == '.':
-          # Move down and right if there is nothing to the right
-          if grid[y+1][x+1] == '.':
-            x += 1
-            y += 1
-          else:
-            break
-        else:
-          break
-        
-
-      # Check if there is sand below
-      elif grid[y+1][x] == 'o':
+      # Check if there is something below
+      if grid[y+1][x] != '.':
         # Check if there is space to the bottom left
         if grid[y+1][x-1] == '.':
           x -= 1
@@ -139,13 +117,16 @@ def calcStaticSandParticles(filename, void = True):
       else:
         # Move down
         y += 1
+
+    # Check if we reached the bottom
     if y == maxY:
       grid[y][x] = '~'
       break
+    # Check if we reached the source
     elif grid[y][x] == '+':
       particles += 1
       break
-    # printGrid(grid)
+
     grid[y][x] = 'o'
     particles += 1
     x = 500-minX
