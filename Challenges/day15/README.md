@@ -118,3 +118,31 @@ To isolate the distress beacon's signal, you need to determine its **tuning freq
 In the example above, the search space is smaller: instead, the `x` and `y` coordinates can each be at most `20`. With this reduced search area, there is only a single position that could have a beacon: `x=14, y=11`. The tuning frequency for this distress beacon is **`56000011`**.
 
 Find the only possible position for the distress beacon. **What is its tuning frequency?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+You probably saw there's a file called `failedAttempt.py` in this directory. I tried to solve this challenge the same way I did [Day 14](https://github.com/fred-corp/Advent-of-Code-2022/tree/main/Challenges/day14), but it didn't work because of the size of the dataset. I had to find another way to solve this challenge.  
+So I went on the [r/adventofcode](https://www.reddit.com/r/adventofcode/) subreddit to find some inspiration for this challenge and found a module called [z3-solver](https://pypi.org/project/z3-solver/).  
+I then learned how to use it and used it to solve this challenge.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 findBeacon.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part one :
+
+"findImpossibleBeacons" took 343.665 ms to execute
+4861076
+
+Part two :
+
+"calcBeaconFrequency" took 318.806 ms to execute
+10649103160102
+```
