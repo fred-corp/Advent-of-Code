@@ -1,6 +1,12 @@
 # Advent of Code 2022: Day 15: Beacon Exclusion Zone
 # https://adventofcode.com/2022/day/15
 #
+# Part one :
+# Find the amount of places where a beacon cannot be present.
+#
+# Part two :
+# Find the coordinates of the beacon that is not in the detection zones of the sensors
+#
 #
 # Solution by Frédéric Druppel
 # See repo for license
@@ -11,7 +17,7 @@ from timeIt import timeit
 from z3 import *
 
 @timeit
-def findPossibleBeacons(filename, lineNumber = 10, maxX = 4000000, maxY = 4000000):
+def findImpossibleBeacons(filename, lineNumber = 10, maxX = 4000000, maxY = 4000000):
   with open(filename) as f:
     lines = f.readlines()
   
@@ -108,7 +114,7 @@ def Abs(x):
 
 if __name__ == "__main__":
   print("Part one :")
-  print(findPossibleBeacons(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 2000000, int(sys.argv[3]) if len(sys.argv) > 3 else 4000000, int(sys.argv[3]) if len(sys.argv) > 3 else 4000000))
+  print(findImpossibleBeacons(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 2000000, int(sys.argv[3]) if len(sys.argv) > 3 else 4000000, int(sys.argv[3]) if len(sys.argv) > 3 else 4000000))
   print("")
   print("Part two :")
   print(calcBeaconFrequency(sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 2000000, int(sys.argv[3]) if len(sys.argv) > 3 else 4000000, int(sys.argv[3]) if len(sys.argv) > 3 else 4000000))
