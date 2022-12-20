@@ -110,3 +110,27 @@ After 10 rounds of mixing:
 The grove coordinates can still be found in the same way. Here, the 1000th number after `0` is **`811589153`**, the 2000th is **`2434767459`**, and the 3000th is **`-1623178306`**; adding these together produces **`1623178306`**.
 
 Apply the decryption key and mix your encrypted file ten times. **What is the sum of the three numbers that form the grove coordinates?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 decrypt.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part one:
+
+"partOne" took 88.193 ms to execute
+19559
+
+Part two:
+
+"partTwo" took 707.220 ms to execute
+912226207972
+```
