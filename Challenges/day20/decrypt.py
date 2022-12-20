@@ -10,6 +10,10 @@
 # after the position of item 0 (wrap around if necessary), and take the sum of those values
 #
 #
+# Part two:
+# Repeat the same process, but multiply the value of each item by 811589153 before 
+# moving it, and repeat the process 10 times
+#
 # Solution by Frédéric Druppel
 # See repo for license
 
@@ -40,6 +44,34 @@ def partOne(filename):
   return coord1 + coord2 + coord3
 
 
+@timeit
+def partTwo(filename):
+  with open(filename) as f:
+    lines = f.readlines()
+
+  # Parse input
+  key = 811589153
+  input = [(value*key, index) for (index, value) in enumerate([int(line) for line in lines])]
+
+  # Mix the list 10 times
+  for _ in range(10):
+    input = mixList(input)
+
+  length = len(input)
+
+  # Find the index of the value 0
+  for zeroIndex in range(length):
+    if input[zeroIndex][0] == 0:
+      break
+
+  # Get the values at the indices 1000, 2000 and 3000
+  coord1 = input[(zeroIndex + 1000) % length][0]
+  coord2 = input[(zeroIndex + 2000) % length][0]
+  coord3 = input[(zeroIndex + 3000) % length][0]
+  return coord1 + coord2 + coord3
+
+
+
 def mixList(input):
   # Get the length of the input
   length = len(input)
@@ -66,3 +98,6 @@ def mixList(input):
 if __name__ == "__main__":
   print("Part one:")
   print(partOne(sys.argv[1]))
+  print()
+  print("Part two:")
+  print(partTwo(sys.argv[1]))
