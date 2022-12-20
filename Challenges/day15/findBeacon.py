@@ -6,6 +6,7 @@
 #
 # Part two :
 # Find the coordinates of the beacon that is not in the detection zones of the sensors
+# at the specified line.
 #
 #
 # Solution by Frédéric Druppel
@@ -76,16 +77,17 @@ def solveForBeacons(coords, lineNumber = 10, maxX = 4000000, maxY = 4000000):
   # to be the beacon
   impossibleCoords = set()
 
-  # Create a solver
+  # Create a solver for part 2
   x = Int('x')
   y = Int('y')
   s = Solver()
 
-  # constrain range of solver (for part 2)
+  # constrain range of solver for part 2
   s.add(x >= 0)
   s.add(x <= maxX)
   s.add(y >= 0)
   s.add(y <= maxY)
+
   for coordPair in coords:
     sensorX = coordPair[0][0]
     sensorY = coordPair[0][1]
@@ -93,7 +95,6 @@ def solveForBeacons(coords, lineNumber = 10, maxX = 4000000, maxY = 4000000):
     beaconY = coordPair[1][1]
     # Calc Manhattan distance 
     distance = abs(sensorX - beaconX) + abs(sensorY - beaconY)
-    s.add(Abs(x - sensorX) + Abs(y - sensorY) > distance)
 
     # Calculate the extent of the area around the sensor at the given line
     extent = distance - abs(sensorY - lineNumber)
@@ -104,11 +105,14 @@ def solveForBeacons(coords, lineNumber = 10, maxX = 4000000, maxY = 4000000):
     # if the Y coordinate corresponds to lineNumber
     if beaconY == lineNumber:
       beaconsInLine.add(beaconX)
+
+    # Add constraints to the solver for part 2
+    s.add(z3Abs(x - sensorX) + z3Abs(y - sensorY) > distance)
   
   return len(impossibleCoords - beaconsInLine), s, x, y
 
 
-def Abs(x):
+def z3Abs(x):
   return If(x >= 0, x, -x)
 
 
