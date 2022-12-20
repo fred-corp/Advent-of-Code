@@ -43,3 +43,27 @@ Instead, consider only cube sides that could be reached by the water and steam a
 In the larger example above, exactly one cube of air is trapped within the lava droplet (at `2,2,5`), so the exterior surface area of the lava droplet is **`58`**.
 
 **What is the exterior surface area of your scanned lava droplet?**
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 cubes.py puzzleInput.txt 
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part One:
+
+"countCubeFaces" took 7.752 ms to execute
+3390
+
+Part Two:
+
+"countVisibleCubeFaces" took 90.923 ms to execute
+2058
+```
