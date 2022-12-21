@@ -9,6 +9,17 @@
 # the monkey then yells the result of the operation of those two numbers.
 # Find the number that the monkey named root yells.
 #
+# Part two:
+# Same as part one, except The correct operation for monkey root
+# should be "=", which means that it still listens for two numbers
+# (from the same two monkeys as before), but now checks that the two
+# numbers match. Also, you got the wrong monkey for the job starting
+# with "humn:". It isn't a monkey - it's you. Actually, you got the
+# job wrong, too: you need to figure out what number you need to yell so
+# that root's equality check passes. (The number that appears after "humn:"
+# in your input is now irrelevant.)
+# Find the number you have to yell.
+#
 #
 # Solution by Frédéric Druppel
 # See repo for license
@@ -65,6 +76,63 @@ def partOne(filename):
   return numbers[root]
 
 
+@timeit
+def partTwo(filename):
+  with open(filename) as f:
+    lines = f.read().splitlines()
+  
+  # Create a dictionary with the monkeys as keys and the jobs as values
+  monkeys = {}
+  for line in lines:
+    monkey, job = line.split(": ")
+    if monkey == "humn":
+      continue
+    monkeys[monkey] = job
+    if monkey == "root":
+      monkeys[monkey] = job.split()[0] + " = " + job.split()[2]
+
+
+  root = "root"
+  
+  s = Solver()
+  humn = "humn"
+  # Create a Z3 variable for each monkey
+  numbers = {}
+  for monkey in monkeys:
+    numbers[monkey] = Int(monkey)
+
+  numbers[humn] = Int(humn)
+  
+  for monkey in monkeys:
+    
+    job = monkeys[monkey]
+    if job.isdigit():
+      s.add(numbers[monkey] == int(job))
+    else:
+      a, op, b = job.split()
+      if op == "+":
+        s.add(numbers[monkey] == numbers[a] + numbers[b])
+      elif op == "-":
+        s.add(numbers[monkey] == numbers[a] - numbers[b])
+      elif op == "*":
+        s.add(numbers[monkey] == numbers[a] * numbers[b])
+      elif op == "/":
+        # We need to make sure that the division is exact
+        s.add(numbers[a] % numbers[b] == 0)
+        s.add(numbers[monkey] == numbers[a] / numbers[b])
+      elif op == "=":
+        s.add(numbers[monkey] == numbers[a])
+        s.add(numbers[a] == numbers[b])
+
+  # Find the number that humn has to yell
+  s.check()
+  
+  return s.model()[numbers[humn]], s.model()[numbers[root]]
+
+
 if __name__ == "__main__":
   print("Part one:")
   print(partOne(sys.argv[1]))
+  print()
+  print("Part two:")
+  print(partTwo(sys.argv[1])[0])
