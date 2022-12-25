@@ -113,3 +113,22 @@ The **head smoothie chef** has just finished warming up the industrial-grade smo
 As you do, a very young Elf - one you recognize from the expedition team - approaches the table and holds up a single **star** fruit he found. The head smoothie chef places it in the blender.
 
 Only **49 stars** to go.
+
+## Solution
+
+The challenge was done in Python, with a timer decorator to measure the execution time.
+
+To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
+
+```sh
+python3 proprietaryNumbers.py puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```sh
+Part One:
+
+"sumSNAFU" took 1.122 ms to execute
+20-1-0=-2=-2220=0011
+```
