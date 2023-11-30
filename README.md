@@ -1,6 +1,15 @@
-# Frédéric Druppel's take on Advent of Code 2022
+# Frédéric Druppel's take on Advent of Code
 
-This is my take on the [Advent of Code 2022](https://adventofcode.com/2022) challenges.
+This repo contains my attempts at solving the [Advent of Code](https://adventofcode.com/) challenges.
+
+## 2022
+
+2022 was the first year I heard of and participated in the Advent of Code. I chose to code my solutions in Python.  
+Sometimes the solutions are clean, sometimes they are janky ¯\\\_(ツ)\_/¯
+
+## 2023
+
+In 2023 I'm choosing to code my solutions in JavaScript. Let's see how that goes !
 
 ## Acknowledgements
 
