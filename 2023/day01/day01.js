@@ -13,7 +13,6 @@
 // Solution by Frédéric Druppel
 // See repo for license
 
-const { on } = require('events')
 const timeIt = require('../timeIt')
 const fs = require('fs')
 
