@@ -57,4 +57,21 @@ Part two was more difficult to do in js without using jankyness (for me anyway).
 I ended up by checking a first time, replacing the spelled out digits with their string equivalent plus their last letter (if it could be the first letter of another spelled out digit), and then checking again.  
 For example, ```zoneight23five``` would become ```1eight235e```, and then that would become ```[1, eight, 2, 3, 5]```. Then that list is checked for the strings to be replaced with their number equivalent, and the sum of the first and last is made.
 
-To run the solution, you'll need a javascript interpreter. I used Node.js v21.2.0
+To run the solution, you'll need a javascript interpreter. I used Node.js v21.2.0  
+Just run the following command in the folder of the day:
+
+```zsh
+node day01.js puzzleInput.txt
+```
+
+The output (with the specified dataset) should be:
+
+```zsh
+Part one:
+The sum of the calibration data is 54634.
+The function "answerPartOne" took 2ms to run
+
+Part two:
+The sum of the calibration data is 53855.
+The function "answerPartTwo" took 6ms to run
+```

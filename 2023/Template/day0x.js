@@ -25,8 +25,11 @@ function answerPartOne() {
   console.log("Part one code goes here")
 }
 
+console.log("Part one:")
 const timedAnswerPartOne = timeIt(answerPartOne)
 timedAnswerPartOne()
+
+console.log()
 
 function answerPartTwo() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
@@ -34,5 +37,6 @@ function answerPartTwo() {
   console.log("Part two code goes here")
 }
 
+console.log("Part two:")
 const timedAnswerPartTwo = timeIt(answerPartTwo)
 timedAnswerPartTwo()

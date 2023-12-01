@@ -43,11 +43,14 @@ function answerPartOne() {
   const lines = parseFile(fileName)
   const numbers = findNumbers(lines)
   const total = sum(numbers)
-  console.log(total)
+  console.log("The sum of the calibration data is " + total + ".")
 }
 
+console.log("Part one:")
 const timedAnswerPartOne = timeIt(answerPartOne)
 timedAnswerPartOne()
+
+console.log()
 
 function findNumbersPartTwo(lines) {
   const numbers = []
@@ -135,8 +138,9 @@ function answerPartTwo() {
   const lines = parseFile(fileName)
   const numbers = findNumbersPartTwo(lines)
   const total = sum(numbers)
-  console.log(total)
+  console.log("The sum of the calibration data is " + total + ".")
 }
 
+console.log("Part two:")
 const timedAnswerPartTwo = timeIt(answerPartTwo)
 timedAnswerPartTwo()
