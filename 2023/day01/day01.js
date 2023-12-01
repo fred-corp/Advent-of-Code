@@ -23,11 +23,9 @@ function parseFile(textFile) {
   return lines
 }
 
-// extract the numbers from a line that looks like "pqr3stu8vwx"
 function findNumbers(lines) {
   const numbers = []
   for (let line of lines) {
-    // replace all non-digits with ''
     const digits = line.replace(/\D/g, '')
     // first and last digit
     const number = digits[0] + digits[digits.length - 1]
@@ -51,9 +49,92 @@ function answerPartOne() {
 const timedAnswerPartOne = timeIt(answerPartOne)
 timedAnswerPartOne()
 
+function findNumbersPartTwo(lines) {
+  const numbers = []
+  for (let line of lines) {
+    // the issue here is that the spelled out number can be
+    // part of another word, like "one" and "eight" in "zoneight234"
+    // so I chose the janky solutions of replacing the spelled out
+    // digit with their corresponding number, but with their last letter
+    // appended to it (if that letter can be the first letter of another digit). 
+    // The next trick is to check a second time for
+    // the spelled out digits, and then convert them to numbers and take the sum
+    const regex = /(?:zero|one|two|three|four|five|six|seven|eight|nine|\d)/g
+    var digits = line.replace(regex, function(match) {
+      switch (match) {
+        case "one":
+          return "1e"
+        case "two":
+          return "2o"
+        case "three":
+          return "3e"
+        case "four":
+          return "4"
+        case "five":
+          return "5e"
+        case "six":
+          return "6"
+        case "seven":
+          return "7n"
+        case "eight":
+          return "8t"
+        case "nine":
+          return "9e"
+        default:
+          return match
+      }
+    }
+    )
+
+    // check again
+    digits = digits.match(regex)
+
+    // convert the digits to numbers
+    for (let i = 0; i < digits.length; i++) {
+      switch (digits[i]) {
+        case "one":
+          digits[i] = "1"
+          break
+        case "two":
+          digits[i] = "2"
+          break
+        case "three":
+          digits[i] = "3"
+          break
+        case "four":
+          digits[i] = "4"
+          break
+        case "five":
+          digits[i] = "5"
+          break
+        case "six":
+          digits[i] = "6"
+          break
+        case "seven":
+          digits[i] = "7"
+          break
+        case "eight":
+          digits[i] = "8"
+          break
+        case "nine":
+          digits[i] = "9"
+          break
+      }
+    }
+
+    // first and last digit
+    const number = String(digits[0]) + String(digits[digits.length - 1])
+    numbers.push(parseInt(number))
+    
+  }
+  return numbers
+}
+
 function answerPartTwo() {
-  const testArray = parseFile("puzzleInputTest.txt")
-  console.log("Part two code goes here")
+  const lines = parseFile("puzzleInput.txt")
+  const numbers = findNumbersPartTwo(lines)
+  const total = sum(numbers)
+  console.log(total)
 }
 
 const timedAnswerPartTwo = timeIt(answerPartTwo)
