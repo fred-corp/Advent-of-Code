@@ -39,7 +39,8 @@ function sum(numbers) {
 
 
 function answerPartOne() {
-  const lines = parseFile('puzzleInput.txt')
+  fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
+  const lines = parseFile(fileName)
   const numbers = findNumbers(lines)
   const total = sum(numbers)
   console.log(total)
@@ -130,7 +131,8 @@ function findNumbersPartTwo(lines) {
 }
 
 function answerPartTwo() {
-  const lines = parseFile("puzzleInput.txt")
+  fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest2.txt"
+  const lines = parseFile(fileName)
   const numbers = findNumbersPartTwo(lines)
   const total = sum(numbers)
   console.log(total)

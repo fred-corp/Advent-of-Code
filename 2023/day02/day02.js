@@ -20,7 +20,8 @@ function parseFile(textFile) {
 }
 
 function answerPartOne() {
-  const testArray = parseFile('puzzleInputTest.txt')
+  fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
+  const lines = parseFile(fileName)
   console.log("Part one code goes here")
 }
 
@@ -28,7 +29,8 @@ const timedAnswerPartOne = timeIt(answerPartOne)
 timedAnswerPartOne()
 
 function answerPartTwo() {
-  const testArray = parseFile("puzzleInputTest.txt")
+  fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
+  const lines = parseFile(fileName)
   console.log("Part two code goes here")
 }
 
