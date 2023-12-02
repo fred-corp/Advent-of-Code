@@ -8,7 +8,8 @@
 // Determine which games would've been impossible depending on the max amount of cubes
 //
 // Part two :
-//
+// With the same input, the product of red, green and blue cubes with 
+// fewest number of cubes of each color that could have been used to make the game possible
 //
 // Solution by Frédéric Druppel
 // See repo for license
@@ -101,10 +102,42 @@ timedAnswerPartOne()
 
 console.log()
 
+
+function powerCalculation(games) {
+  const products = []
+  for (let i = 0; i < games.length; i++) {
+    const game = games[i]
+    const [rounds] = parseGame(game)
+    let product = 1
+    let roundMaxRed = 0
+    let roundMaxGreen = 0
+    let roundMaxBlue = 0
+    for (let j = 0; j < rounds.length; j++) {
+      const round = rounds[j]
+      const cubes = parseRound(round)
+      const red = cubes[0]
+      const green = cubes[1]
+      const blue = cubes[2]
+      if (red > roundMaxRed) {
+        roundMaxRed = red
+      }
+      if (green > roundMaxGreen) {
+        roundMaxGreen = green
+      }
+      if (blue > roundMaxBlue) {
+        roundMaxBlue = blue
+      }
+    }
+    const productOfCubes = roundMaxRed * roundMaxGreen * roundMaxBlue
+    products.push(productOfCubes)
+  }
+  return products.reduce((a, b) => a + b, 0)
+}
+
 function answerPartTwo() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
-  const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const games = parseFile(fileName)
+  console.log(powerCalculation(games))
 }
 
 console.log("Part two:")
