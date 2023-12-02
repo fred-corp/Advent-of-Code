@@ -93,7 +93,7 @@ function answerPartOne() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const games = parseFile(fileName)
   const possibleGames = checkGames(games)
-  console.log(possibleGames)
+  console.log("The sum of the IDs of possible games is " + possibleGames)
 }
 
 console.log("Part one:")
@@ -137,7 +137,7 @@ function powerCalculation(games) {
 function answerPartTwo() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const games = parseFile(fileName)
-  console.log(powerCalculation(games))
+  console.log("The sum of the powers of every game set is " + powerCalculation(games))
 }
 
 console.log("Part two:")
