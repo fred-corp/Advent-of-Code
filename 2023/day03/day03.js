@@ -87,7 +87,7 @@ function calcSymbol(lines, partTwo = false) {
 function answerPartOne() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log(calcSymbol(lines))
+  console.log(`Sum of all symbols : ${calcSymbol(lines)}`)
 }
 
 console.log("Part one:")
@@ -208,7 +208,7 @@ function findRatio(prevLine, currentLine, nextLine, j) {
 function answerPartTwo() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log(calcSymbol(lines, true))
+  console.log(`Sum of all ratios  : ${calcSymbol(lines, true)}`)
 }
 
 console.log("Part two:")
