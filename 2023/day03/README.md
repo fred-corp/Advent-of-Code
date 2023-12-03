@@ -1,4 +1,4 @@
-# --- Day 3: \<name of challenge\> ---
+# --- Day 3: Gear Ratios ---
 
 ## --- Part One ---
 
