@@ -37,84 +37,20 @@ function parseFile(textFile) {
   return lines
 }
 
-function findValue(line, j) {
-  let symbolValue = 0
-
-  let prevPossible = true
-  let midPossible = true
-  let nextPossible = true
-
-  if (/^\d$/.test(line[j-1]) && prevPossible) {
-    if (/^\d$/.test(line[j])) {
-      midPossible = false
-      if (/^\d$/.test(line[j-2])) {
-        symbolValue += parseInt(line[j-2] + line[j-1] + line[j])
-        
-      }
-      else {
-        if (/^\d$/.test(line[j+1])) {
-          nextPossible = false
-          symbolValue += parseInt(line[j-1] + line[j] + line[j+1])
-        }
-        else {
-          symbolValue += parseInt(line[j-1] + line[j])
-        }
-      }
-    }
-    else {
-      if (/^\d$/.test(line[j-2])) {
-        if (/^\d$/.test(line[j-3])) {
-          symbolValue += parseInt(line[j-3] + line[j-2] + line[j-1])
-        }
-        else {
-          symbolValue += parseInt(line[j-2] + line[j-1])
-        }
-      }
-      else {
-        symbolValue += parseInt(line[j-1])
-      }
-    }
-  }
-
-  if (/^\d$/.test(line[j]) && midPossible) {
-    nextPossible = false
-    if (/^\d$/.test(line[j+1])) {
-      if (/^\d$/.test(line[j-1])) {
-        symbolValue += parseInt(line[j-1] + line[j] + line[j+1])
-      }
-      else {
-        if (/^\d$/.test(line[j+2])) {
-          symbolValue += parseInt(line[j] + line[j+1] + line[j+2])
-        }
-        else {
-          symbolValue += parseInt(line[j] + line[j+1])
-        }
-      }
-    }
-    else {
-      symbolValue += parseInt(line[j])
-    }
-  }
-
-  if (/^\d$/.test(line[j+1]) && nextPossible) {
-    if (/^\d$/.test(line[j+2])) {
-      if (/^\d$/.test(line[j+3])) {
-        symbolValue += parseInt(line[j+1] + line[j+2] + line[j+3])
-      }
-      else {
-        symbolValue += parseInt(line[j+1] + line[j+2])
-      }
-    }
-    else {
-      symbolValue += parseInt(line[j+1])
-    }
-  }
-  return symbolValue
-}
-
-
 function getValue(prevLine, currentLine, nextLine, j) {
-  return findValue(prevLine, j) + findValue(currentLine, j) + findValue(nextLine, j)
+  let gearsPrevious = findGears(prevLine, j)
+  let gearsCurrent = findGears(currentLine, j)
+  let gearsNext = findGears(nextLine, j)
+  let sum = 0
+
+  // remove 0 values from gears
+  gearsPrevious = gearsPrevious.filter(x => x !== 0)
+  gearsCurrent = gearsCurrent.filter(x => x !== 0)
+  gearsNext = gearsNext.filter(x => x !== 0)
+
+  // find the sum of all gears
+  sum = gearsPrevious.reduce((a, b) => a + b, 0) + gearsCurrent.reduce((a, b) => a + b, 0) + gearsNext.reduce((a, b) => a + b, 0)
+  return sum
 }
 
 
@@ -147,8 +83,6 @@ function calcSymbol(lines, partTwo = false) {
   return sum
   
 }
-
-
 
 function answerPartOne() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
@@ -264,13 +198,10 @@ function findRatio(prevLine, currentLine, nextLine, j) {
   gearsCurrent = gearsCurrent.filter(x => x !== 0)
   gearsNext = gearsNext.filter(x => x !== 0)
 
-  console.log(`gearsPrevious: ${gearsPrevious}, gearsCurrent: ${gearsCurrent}, gearsNext: ${gearsNext}`)
-
   // check if there are exactly two gears in total
   if (gearsPrevious.length + gearsCurrent.length + gearsNext.length === 2) {
     ratio = gearsPrevious.reduce((a, b) => a * b, 1) * gearsCurrent.reduce((a, b) => a * b, 1) * gearsNext.reduce((a, b) => a * b, 1)
   }
-  console.log(`ratio: ${ratio}`)
   return ratio
 }
 
