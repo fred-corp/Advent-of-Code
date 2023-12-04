@@ -1,4 +1,4 @@
-# --- Day 4: \<name of challenge\> ---
+# --- Day 4: Scratchcards ---
 
 ## --- Part One ---
 
