@@ -10,7 +10,10 @@
 // for each of the three matches after the first
 //
 // Part two :
-//
+// Apparently the scratchcard rules are weird, the amount of matches
+// makes you win the a copy of the next x amount of scratchcards (x being the amount of matches)
+// Process the original cards and their copies
+// How many scratchcards do have in total ?
 //
 // Solution by Frédéric Druppel
 // See repo for license
@@ -76,10 +79,27 @@ timedAnswerPartOne()
 
 console.log()
 
+function getPileOfCards(lines) {
+  let pile = []
+  for (let i = 0; i < lines.length; i++) {
+    pile.push(1)
+  }
+  let matches = 0
+  for (let i = 0; i < lines.length; i++) {
+    const [card1, card2] = parseLine(lines[i])
+    matches = checkForMatches(card1, card2)[0]
+    for (let j = 1; j < matches+1; j++) {
+      pile[i+j] += 1 * pile[i]
+    }
+  }
+  // return sum of pile
+  return pile.reduce((a, b) => a + b, 0)
+}
+
 function answerPartTwo() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  console.log(getPileOfCards(lines))
 }
 
 console.log("Part two:")
