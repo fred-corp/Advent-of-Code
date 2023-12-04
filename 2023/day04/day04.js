@@ -18,10 +18,8 @@
 // Solution by Frédéric Druppel
 // See repo for license
 
-const { get } = require('http')
 const timeIt = require('../timeIt')
 const fs = require('fs')
-const { match } = require('assert')
 
 function parseFile(textFile) {
   const text = fs.readFileSync(textFile, 'utf8')
@@ -57,7 +55,7 @@ function checkForMatches(card1, card2) {
   return [matches, score]
 }
 
-function getMatches(lines){
+function getScoreSum(lines){
   let score = 0
   for (let i = 0; i < lines.length; i++) {
     const [card1, card2] = parseLine(lines[i])
@@ -70,7 +68,7 @@ function getMatches(lines){
 function answerPartOne() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log(getMatches(lines))
+  console.log(`The sum of scores is ${getScoreSum(lines)} points`)
 }
 
 console.log("Part one:")
@@ -99,7 +97,7 @@ function getPileOfCards(lines) {
 function answerPartTwo() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log(getPileOfCards(lines))
+  console.log(`The amount of cards in the pile is ${getPileOfCards(lines)}`)
 }
 
 console.log("Part two:")
