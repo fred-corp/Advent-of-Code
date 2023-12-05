@@ -72,7 +72,7 @@ function convertToDest(seeds, sourceDestArrays) {
 }
 
 function convertRangeToDest(range, sourceDestArray) {
-  innerVals = []
+  let innerVals = []
   let testRange = range
   sourceDestArray.forEach(sourceDest => {
     let newRange = []
@@ -121,7 +121,7 @@ function answerPartOne() {
   const seeds = getSeeds(groups[0])
   const locations = mapSeedsToLocations(seeds, groups)
   const min = Math.min(...locations)
-  console.log(min)
+  console.log(`The lowest location value is ${min}`)
 }
 
 console.log("Part one:")
@@ -156,7 +156,7 @@ function answerPartTwo() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const groups = parseFile(fileName)
   const seeds = getSeeds(groups[0])
-  console.log(calcMinSeedsIfSeedsIsRange(seeds, groups))
+  console.log(`The lowest location value is ${calcMinSeedsIfSeedsIsRange(seeds, groups)}`)
 }
 
 console.log("Part two:")
