@@ -1,4 +1,4 @@
-// Advent of Code 2023: Day 5:
+// Advent of Code 2023: Day 5: If You Give A Seed A Fertilizer
 // https://adventofcode.com/2023/day/5
 //
 // Part one :
@@ -116,7 +116,7 @@ function mapSeedsToLocations(seeds, groups) {
 }
 
 function answerPartOne() {
-  fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
+  const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const groups = parseFile(fileName)
   const seeds = getSeeds(groups[0])
   const locations = mapSeedsToLocations(seeds, groups)
@@ -139,7 +139,7 @@ function calcMinSeedsIfSeedsIsRange(seeds, groups) {
   for (let i = 0; i < seeds.length; i+=2) {
     pairs.push([seeds[i], seeds[i + 1]])
   }
-  answer = 1000000000000000
+  let answer = 1000000000000000
   pairs.forEach(pair => {
     let range = [[pair[0], pair[0]+pair[1]-1]]
     sourceDestArrays.forEach(sourceDestArray => {
@@ -153,7 +153,7 @@ function calcMinSeedsIfSeedsIsRange(seeds, groups) {
 }
 
 function answerPartTwo() {
-  fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
+  const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const groups = parseFile(fileName)
   const seeds = getSeeds(groups[0])
   console.log(`The lowest location value is ${calcMinSeedsIfSeedsIsRange(seeds, groups)}`)
