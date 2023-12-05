@@ -70,6 +70,41 @@ function convertToDest(seeds, sourceDestArrays) {
   return dests
 }
 
+function convertRangeToDest(range, sourceDestArray) {
+  innerVals = []
+  let testRange = range
+  sourceDestArray.forEach(sourceDest => {
+    let newRange = []
+    let dest = sourceDest[0]
+    let source = sourceDest[1]
+    let sourceEnd = source + sourceDest[2]
+    while(testRange.length > 0){
+      const rnge = testRange.pop()
+      let start = rnge[0]
+      let end = rnge[1]
+      let before = [start, Math.min(end, source)]
+      let inter = [Math.max(start, source), Math.min(end, sourceEnd)]
+      let after = [Math.max(start, sourceEnd), end]
+      if (before[1] > before[0]) {
+        newRange.push(before)
+      }
+      if (inter[1] > inter[0]) {
+        innerVals.push([inter[0]-source+dest, inter[1]-source+dest])
+      }
+      if (after[1] > after[0]) {
+        newRange.push(after)
+      }
+    }
+    testRange = newRange
+
+
+  })
+  // add elements of testRange to innerVals
+  innerVals = innerVals.concat(testRange)
+
+  return innerVals
+}
+
 function mapSeedsToLocations(seeds, groups) {
   let sourceDestArrays = []
   groups.slice(1).forEach(group => {
@@ -99,19 +134,19 @@ function calcMinSeedsIfSeedsIsRange(seeds, groups) {
   groups.slice(1).forEach(group => {
     sourceDestArrays.push(getSourceToDestMap(group))
   })
-  // create pairs of each 2 seeds
   let pairs = []
   for (let i = 0; i < seeds.length; i+=2) {
     pairs.push([seeds[i], seeds[i + 1]])
   }
   answer = 1000000000000000
   pairs.forEach(pair => {
-    console.log(pair)
-    for(i=pair[0]; i<=pair[0]+pair[1]-1; i++) {
-      let variable = [i]
-
-      answer = Math.min(answer, convertToDest(variable, sourceDestArrays)[0])
-    }
+    let range = [[pair[0], pair[0]+pair[1]-1]]
+    sourceDestArrays.forEach(sourceDestArray => {
+      range = convertRangeToDest(range, sourceDestArray)
+    })
+    range.forEach(rnge => {
+      answer = Math.min(answer, ...rnge)
+    })
   })
   return answer
 }
