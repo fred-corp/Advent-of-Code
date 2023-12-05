@@ -6,7 +6,7 @@
 // way to shortly describe the problem
 //
 // Part two :
-//
+// Idem
 //
 // Solution by Frédéric Druppel
 // See repo for license
