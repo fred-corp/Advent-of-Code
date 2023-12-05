@@ -2,7 +2,8 @@
 // https://adventofcode.com/2023/day/5
 //
 // Part one :
-//
+// Check Advent of code website or README; couldn't find a 
+// way to shortly describe the problem
 //
 // Part two :
 //
