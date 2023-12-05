@@ -70,8 +70,7 @@ function convertToDest(seeds, sourceDestArrays) {
   return dests
 }
 
-function mapSeedsToLocations(groups) {
-  let seeds = getSeeds(groups[0])
+function mapSeedsToLocations(seeds, groups) {
   let sourceDestArrays = []
   groups.slice(1).forEach(group => {
     sourceDestArrays.push(getSourceToDestMap(group))
@@ -83,7 +82,8 @@ function mapSeedsToLocations(groups) {
 function answerPartOne() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const groups = parseFile(fileName)
-  const locations = mapSeedsToLocations(groups)
+  const seeds = getSeeds(groups[0])
+  const locations = mapSeedsToLocations(seeds, groups)
   const min = Math.min(...locations)
   console.log(min)
 }
@@ -94,10 +94,33 @@ timedAnswerPartOne()
 
 console.log()
 
+function calcMinSeedsIfSeedsIsRange(seeds, groups) {
+  let sourceDestArrays = []
+  groups.slice(1).forEach(group => {
+    sourceDestArrays.push(getSourceToDestMap(group))
+  })
+  // create pairs of each 2 seeds
+  let pairs = []
+  for (let i = 0; i < seeds.length; i+=2) {
+    pairs.push([seeds[i], seeds[i + 1]])
+  }
+  answer = 1000000000000000
+  pairs.forEach(pair => {
+    console.log(pair)
+    for(i=pair[0]; i<=pair[0]+pair[1]-1; i++) {
+      let variable = [i]
+
+      answer = Math.min(answer, convertToDest(variable, sourceDestArrays)[0])
+    }
+  })
+  return answer
+}
+
 function answerPartTwo() {
   fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
-  const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const groups = parseFile(fileName)
+  const seeds = getSeeds(groups[0])
+  console.log(calcMinSeedsIfSeedsIsRange(seeds, groups))
 }
 
 console.log("Part two:")
