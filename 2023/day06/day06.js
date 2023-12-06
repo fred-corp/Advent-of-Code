@@ -10,7 +10,9 @@
 // Calculate the amount of ways to get to farther than the record distance
 //
 // Part two :
-//
+// input becomes : 
+// Time:      71530
+// Distance: 940200
 //
 // Solution by Frédéric Druppel
 // See repo for license
@@ -24,19 +26,20 @@ function parseFile(textFile) {
   return lines
 }
 
+// Part one
 function getGames(lines) {
   let games = []
-  let times = []
+  let numbers = []
   lines.forEach(line => {
-    times.push(line.split(' ')
+    numbers.push(line.split(' ')
                       .slice(1)
-                      .map(time => parseInt(time))
-                      .filter(time => !isNaN(time))
-                      .filter(time => time !== undefined)
+                      .map(num => parseInt(num))
+                      .filter(num => !isNaN(num))
+                      .filter(num => num !== undefined)
                       )
   })
-  for (let i = 0; i < times[0].length; i++) {
-    games.push([times[0][i], times[1][i]])
+  for (let i = 0; i < numbers[0].length; i++) {
+    games.push([numbers[0][i], numbers[1][i]])
   }
   return games
 }
@@ -76,10 +79,26 @@ timedAnswerPartOne()
 
 console.log()
 
+// Part two
+function getGame(lines){
+  let game = []
+  lines.forEach(line => {
+    game.push(line.split(':')[1]
+                  .split(' ')
+                  .map(num => parseInt(num))
+                  .filter(num => !isNaN(num))
+                  .filter(num => num !== undefined)
+                  .join('')
+                  )
+  })
+  return game
+}
+
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const game = getGame(lines)
+  console.log(getAmountOfWaysProduct([game]))
 }
 
 console.log("Part two:")
