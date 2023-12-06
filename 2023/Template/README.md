@@ -1,13 +1,5 @@
 # --- Day x: \<name of challenge\> ---
 
-## --- Part One ---
-
-> Part one goes here
-
-## --- Part Two ---
-
-> Part two goes here
-
 ## Solution
 
 The challenge was done in JavaScript, with a timer decorator to measure the execution time.
