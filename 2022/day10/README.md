@@ -339,7 +339,7 @@ The challenge was done in Python, with a timer decorator to measure the executio
 To run the solution, you need a working installation of [Python 3](https://www.python.org/downloads/). Then, run the following command from this directory:
 
 ```sh
-python3 CRT.py puzzleInput.txt
+python3 CRT.py puzzleInputTest.txt
 ```
 
 The output (with the specified dataset) should be:
@@ -348,15 +348,15 @@ The output (with the specified dataset) should be:
 Part One:
 
 "findSignalStrengths" took 0.515 ms to execute
-12560
+13140
 
 Part Two:
-###..#....###...##..####.###...##..#....
-#..#.#....#..#.#..#.#....#..#.#..#.#....
-#..#.#....#..#.#..#.###..###..#....#....
-###..#....###..####.#....#..#.#....#....
-#....#....#....#..#.#....#..#.#..#.#....
-#....####.#....#..#.#....###...##..####.
+##..##..##..##..##..##..##..##..##..##..
+###...###...###...###...###...###...###.
+####....####....####....####....####....
+#####.....#####.....#####.....#####.....
+######......######......######......####
+#######.......#######.......#######.....
 
 "drawCRT" took 0.251 ms to execute
 ```
