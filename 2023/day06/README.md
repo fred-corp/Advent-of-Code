@@ -74,6 +74,9 @@ Now, you have to figure out how many ways there are to win this single race. In 
 
 The challenge was done in JavaScript, with a timer decorator to measure the execution time.
 
+I solved this challenge fairly easily (in around 20min), and I was able to reuse the code from part one to solve part two.  
+Part two could be a bit better as it's not very efficient and takes time to solve (around 17 seconds), but it's good enough for the challenge.
+
 To run the solution, you'll need a javascript interpreter. I used Node.js v21.2.0
 
 ```zsh
@@ -83,5 +86,11 @@ node day06.js puzzleInput.txt
 The output (with the specified dataset) should be:
 
 ```zsh
+Part one:
+Product of all ways: 345015
+The function "answerPartOne" took 2ms to run
 
+Part two:
+Total ways: 42588603
+The function "answerPartTwo" took 17016ms to run
 ```
