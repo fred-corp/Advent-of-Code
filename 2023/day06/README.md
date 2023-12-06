@@ -1,4 +1,4 @@
-# --- Day 6: \<name of challenge\> ---
+# --- Day 6: Wait For It ---
 
 ## --- Part One ---
 
