@@ -48,12 +48,22 @@ function getDistance(time, holdTime) {
   return (time - holdTime) * holdTime
 }
 
-function getAmountOfWays(game) {
+function getAmountOfWays(game, optimized = false) {
   let ways = 0
-  for (let i = 0; i < game[0]; i++) {
-    if (getDistance(game[0], i) > game[1]) {
-      ways++
+  if (!optimized) {
+    for (let i = 0; i < game[0]; i++) {
+      if (getDistance(game[0], i) > game[1]) {
+        ways++
+      }
     }
+  }
+  else {
+    //  - holdTime**2 + holdTime*time - distance > 0
+    // Use the bazooka ( a joke my math teacher used to say when we used the quadratic formula)
+    const rho = game[0] ** 2 - (4 * game[1])
+    const holdTime1 = (game[0] + Math.sqrt(rho)) / 2 | 0
+    const holdTime2 = (game[0] - Math.sqrt(rho)) / 2 | 0
+    ways = Math.max(holdTime1, holdTime2) - Math.min(holdTime1, holdTime2) | 0
   }
   return ways
 }
@@ -61,7 +71,7 @@ function getAmountOfWays(game) {
 function getAmountOfWaysProduct(games) {
   let product = 1
   games.forEach(game => {
-    product *= getAmountOfWays(game)
+    product *= getAmountOfWays(game, true)
   })
   return product
 }
@@ -91,6 +101,7 @@ function getGame(lines){
                   .join('')
                   )
   })
+  game = game.map(num => parseInt(num))
   return game
 }
 
