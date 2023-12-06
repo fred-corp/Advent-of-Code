@@ -70,7 +70,7 @@ function answerPartOne() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
   const games = getGames(lines)
-  console.log(getAmountOfWaysProduct(games))
+  console.log(`Product of all ways: ${getAmountOfWaysProduct(games)}`)
 }
 
 console.log("Part one:")
@@ -98,7 +98,7 @@ function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
   const game = getGame(lines)
-  console.log(getAmountOfWaysProduct([game]))
+  console.log(`Total ways: ${getAmountOfWaysProduct([game])}`)
 }
 
 console.log("Part two:")
