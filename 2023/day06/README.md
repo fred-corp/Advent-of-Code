@@ -75,7 +75,9 @@ Now, you have to figure out how many ways there are to win this single race. In 
 The challenge was done in JavaScript, with a timer decorator to measure the execution time.
 
 I solved this challenge fairly easily (in around 20min), and I was able to reuse the code from part one to solve part two.  
-Part two could be a bit better as it's not very efficient and takes time to solve (around 17 seconds), but it's good enough for the challenge.
+Part two could be a bit better as it's not very efficient and takes time to solve (around 17 seconds), but it's good enough for the challenge.  
+
+Edit : I couldn't resist and I optimized the code a bit. Instead of iterating every possible hold time, I used the quadratic formula to find the amount of ways yielding a greater distance than the record, and it now takes less than 1ms to solve part two.
 
 To run the solution, you'll need a javascript interpreter. I used Node.js v21.2.0
 
@@ -88,9 +90,9 @@ The output (with the specified dataset) should be:
 ```zsh
 Part one:
 Product of all ways: 345015
-The function "answerPartOne" took 2ms to run
+The function "answerPartOne" took 1ms to run
 
 Part two:
 Total ways: 42588603
-The function "answerPartTwo" took 17016ms to run
+The function "answerPartTwo" took 0ms to run
 ```
