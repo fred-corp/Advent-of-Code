@@ -24,9 +24,7 @@ function createHand(line) {
   return hand
 }
 
-function getHandType(hand) {
-  const cards = hand[0]
-
+function getScore(cards) {
   let value = 0
   for (let i = 0; i < cards.length; i++) {
     for(let j = i + 1; j < cards.length; j++) {
@@ -35,12 +33,30 @@ function getHandType(hand) {
       }
     }
   }
+  return value
+}
+
+function getHandType(hand, partTwo = false) {
+  const cards = hand[0]
+  let value = 0
+  let newCards = cards
+
+  value = getScore(newCards)
+  
+  if (partTwo) {
+    const order = "AKQT98765432J"
+    for(let i = 0; i < order.length-1; i++) {
+      const stub = order[i]
+      newCards = cards.replace(/J/g, stub)
+      value = Math.max(value, getScore(newCards))
+    }
+  }
   return [cards, hand[1], value]
 
 }
 
-function sortHands(hands) {
-  const order = "AKQJT98765432"
+function sortHands(hands, partTwo = false) {
+  const order = (!partTwo) ? "AKQJT98765432" : "AKQT98765432J"
   const sortedHands = hands.sort((a, b) => {
     if (a[2] < b[2]) {
       return -1
@@ -92,7 +108,11 @@ console.log()
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const hands = lines.map(line => createHand(line))
+  const handTypes = hands.map(hand => getHandType(hand, true))
+  const handsSorted = sortHands(handTypes, true)
+  const gains = getGains(handsSorted)
+  console.log(gains)
 }
 
 console.log("Part two:")
