@@ -96,7 +96,7 @@ function answerPartOne() {
   const handTypes = hands.map(hand => getHandType(hand))
   const handsSorted = sortHands(handTypes)
   const gains = getGains(handsSorted)
-  console.log(gains)
+  console.log(`Total gains: ${gains}`)
 }
 
 console.log("Part one:")
@@ -112,7 +112,7 @@ function answerPartTwo() {
   const handTypes = hands.map(hand => getHandType(hand, true))
   const handsSorted = sortHands(handTypes, true)
   const gains = getGains(handsSorted)
-  console.log(gains)
+  console.log(`Total gains: ${gains}`)
 }
 
 console.log("Part two:")
