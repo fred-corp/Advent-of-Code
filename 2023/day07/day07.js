@@ -2,10 +2,12 @@
 // https://adventofcode.com/2023/day/7
 //
 // Part one :
-//
+// Sort the hands by their value, then multiply the value
+// of each hand by its position in the list.
 //
 // Part two :
-//
+// Same, except that 'J' can be replaced by any other card
+// to get a better place, but its value is now the smallest
 //
 // Solution by Frédéric Druppel
 // See repo for license
