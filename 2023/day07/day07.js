@@ -1,5 +1,5 @@
-// Advent of Code 2023: Day x:
-// https://adventofcode.com/2023/day/x
+// Advent of Code 2023: Day 7: Camel Cards
+// https://adventofcode.com/2023/day/7
 //
 // Part one :
 //

@@ -1,4 +1,4 @@
-# --- Day 7: \<name of challenge\> ---
+# --- Day 7: Camel Cards ---
 
 ## Solution
 
