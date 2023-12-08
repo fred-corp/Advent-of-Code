@@ -2,15 +2,18 @@
 // https://adventofcode.com/2023/day/8
 //
 // Part one :
-//
+// From a set of instructions and a network, find the 
+// number of steps needed to go from "AAA" to "ZZZ"
 //
 // Part two :
+// Same, except we simultaneously go from all nodes that end with "A"
+// to any node that ends with "Z", and find the least common multiple of
+// all navigation steps
 //
 //
 // Solution by Frédéric Druppel
 // See repo for license
 
-const { start } = require('repl')
 const timeIt = require('../timeIt')
 const fs = require('fs')
 
