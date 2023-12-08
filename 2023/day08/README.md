@@ -1,4 +1,4 @@
-# --- Day 8: \<name of challenge\> ---
+# --- Day 8: Haunted Wasteland ---
 
 ## Solution
 

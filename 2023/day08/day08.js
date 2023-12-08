@@ -1,4 +1,4 @@
-// Advent of Code 2023: Day 8:
+// Advent of Code 2023: Day 8: Haunted Wasteland
 // https://adventofcode.com/2023/day/8
 //
 // Part one :
