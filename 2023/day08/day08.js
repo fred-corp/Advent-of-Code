@@ -61,7 +61,7 @@ function answerPartOne() {
   const lines = parseFile(fileName)
   const [instructions, nodes] = getNodes(lines)
   const navigationSteps = getNavigationSteps(instructions, nodes)
-  console.log(navigationSteps)
+  console.log(`Navigation steps: ${navigationSteps}`)
 }
 
 console.log("Part one:")
@@ -111,7 +111,7 @@ function answerPartTwo() {
   const lines = parseFile(fileName)
   const [instructions, nodes] = getNodes(lines)
   const navigationSteps = getSimultaneousNavigationSteps(instructions, nodes)
-  console.log(navigationSteps)
+  console.log(`Simultaneous navigation steps: ${navigationSteps}`)
 }
 
 console.log("Part two:")
