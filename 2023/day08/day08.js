@@ -104,7 +104,7 @@ function getSimultaneousNavigationSteps(instructions, nodes) {
 
 
 function answerPartTwo() {
-  const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
+  const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest2.txt"
   const lines = parseFile(fileName)
   const [instructions, nodes] = getNodes(lines)
   const navigationSteps = getSimultaneousNavigationSteps(instructions, nodes)
