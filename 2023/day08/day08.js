@@ -10,6 +10,7 @@
 // Solution by Frédéric Druppel
 // See repo for license
 
+const { start } = require('repl')
 const timeIt = require('../timeIt')
 const fs = require('fs')
 
@@ -66,10 +67,48 @@ timedAnswerPartOne()
 
 console.log()
 
+function getSpecificNodes(nodes, nodeType) {
+  let specificNodes = []
+  Object.keys(nodes).forEach(node => {
+    if (node.endsWith(nodeType)) {
+      specificNodes.push(node)
+    }
+  })
+  return specificNodes
+}
+
+const gcd = (a, b) => b == 0 ? a : gcd (b, a % b)
+const lcm = (a, b) =>  a / gcd (a, b) * b
+
+function getSimultaneousNavigationSteps(instructions, nodes) {
+  let startNodes = getSpecificNodes(nodes, 'A')
+  let endSteps = []
+
+  startNodes.forEach(node => {
+    let instructionsIndex = 0
+    let navigationSteps = 0
+    let currentNode = node
+    while (!currentNode.endsWith('Z')) {
+      currentNode = nodes[currentNode][instructions[instructionsIndex]]
+      instructionsIndex++
+      if (instructionsIndex >= instructions.length) {
+        instructionsIndex = 0
+      }
+      navigationSteps++
+    }
+    endSteps.push(navigationSteps)
+  })
+  const ans = endSteps.reduce((a, b) => lcm(a, b), 1)
+  return ans
+}
+
+
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const [instructions, nodes] = getNodes(lines)
+  const navigationSteps = getSimultaneousNavigationSteps(instructions, nodes)
+  console.log(navigationSteps)
 }
 
 console.log("Part two:")
