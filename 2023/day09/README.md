@@ -16,10 +16,10 @@ The output (with the specified dataset) should be:
 
 ```zsh
 Part one:
-Sum of last steps: 1934898178
-The function "answerPartOne" took 8ms to run
+Sum of last steps: 114
+The function "answerPartOne" took 2ms to run
 
 Part two:
-Sum of previous steps: 1129
-The function "answerPartTwo" took 3ms to run
+Sum of previous steps: 2
+The function "answerPartTwo" took 0ms to run
 ```
