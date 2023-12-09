@@ -83,10 +83,7 @@ function answerPartOne() {
   const sum = getSumOfLastSteps(suitesSteps)
 
   console.log(sum)
-  console.log("Part one code goes here")
 }
-
-
 
 console.log("Part one:")
 const timedAnswerPartOne = timeIt(answerPartOne)
@@ -94,10 +91,30 @@ timedAnswerPartOne()
 
 console.log()
 
+function getFirstSuiteSteps(suiteSteps) {
+  let propagatedSteps = suiteSteps
+  for (let i = suiteSteps.length-2; i >= 0; i--) {
+    propagatedSteps[i].unshift(propagatedSteps[i][0]-propagatedSteps[i+1][0])
+  }
+  return propagatedSteps[0][0]
+}
+
+function getSumOfFirstSteps(suitesSteps) {
+  let sum = 0
+  suitesSteps.forEach(suiteSteps => {
+    sum += getFirstSuiteSteps(suiteSteps)
+  })
+  return sum
+}
+
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const suites = getSuites(lines)
+  const suitesSteps = iterateSuites(suites)
+  const sum = getSumOfFirstSteps(suitesSteps)
+
+  console.log(sum)
 }
 
 console.log("Part two:")
