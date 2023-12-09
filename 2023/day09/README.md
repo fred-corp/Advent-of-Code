@@ -1,4 +1,4 @@
-# --- Day 9: \<name of challenge\> ---
+# --- Day 9: Mirage Maintenance ---
 
 ## Solution
 
