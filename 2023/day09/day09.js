@@ -82,7 +82,7 @@ function answerPartOne() {
   const suitesSteps = iterateSuites(suites)
   const sum = getSumOfLastSteps(suitesSteps)
 
-  console.log(sum)
+  console.log(`Sum of last steps: ${sum}`)
 }
 
 console.log("Part one:")
@@ -114,7 +114,7 @@ function answerPartTwo() {
   const suitesSteps = iterateSuites(suites)
   const sum = getSumOfFirstSteps(suitesSteps)
 
-  console.log(sum)
+  console.log(`Sum of previous steps: ${sum}`)
 }
 
 console.log("Part two:")
