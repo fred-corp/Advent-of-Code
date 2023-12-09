@@ -2,10 +2,11 @@
 // https://adventofcode.com/2023/day/9
 //
 // Part one :
-//
+// From a list of suites, find the next step in each suite
+// and calculate the sum of all next steps
 //
 // Part two :
-//
+// Same but this time we propagate the steps backwards
 //
 // Solution by Frédéric Druppel
 // See repo for license
