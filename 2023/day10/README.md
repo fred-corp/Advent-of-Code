@@ -1,4 +1,4 @@
-# --- Day 10: \<name of challenge\> ---
+# --- Day 10: Pipe Maze ---
 
 ## Solution
 
