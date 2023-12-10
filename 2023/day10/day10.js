@@ -2,9 +2,10 @@
 // https://adventofcode.com/2023/day/10
 //
 // Part one :
-//
+// count the amount of steps in a loop of tubes by browsing it
 //
 // Part two :
+// count the amount of enclosed tiles inside the loop of tubes
 //
 //
 // Solution by Frédéric Druppel
