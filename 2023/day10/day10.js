@@ -157,7 +157,6 @@ function findFarthestPoint(tubeMap, startPosition) {
       }
     }
     if (currentTube === 'S' && steps > 0) {
-      console.log('found start again')
       return [steps, tubes, startTube.isLetter]
     }
 
@@ -186,7 +185,7 @@ function answerPartOne() {
   const lines = parseFile(fileName)
   const [tubeMap, startPosition] = getTubeMap(lines)
   const [steps, tubes, startLetter] = findFarthestPoint(tubeMap, startPosition)
-  console.log(steps/2)
+  console.log(`Steps to farthest point: ${steps/2|0}`)
 }
 
 console.log("Part one:")
@@ -234,7 +233,7 @@ function answerPartTwo() {
   const [tubeMap, startPosition] = getTubeMap(lines)
   const [steps, tubes, startLetter] = findFarthestPoint(tubeMap, startPosition)
   const enclosedTiles = findEnclosedTiles(tubeMap, tubes, startLetter)
-  console.log(enclosedTiles)
+  console.log(`Amount of enclosed tiles: ${enclosedTiles}`)
 }
 
 console.log("Part two:")
