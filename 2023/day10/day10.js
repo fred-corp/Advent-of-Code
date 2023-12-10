@@ -48,10 +48,53 @@ function findFarthestPoint(tubeMap, startPosition) {
   // left can be '-', 'F' or 'L'
   // right can be '-', '7' or 'J'
 
-  // TODO : check every direction for start step instead of magically deciding!
-  let direction = 'down'
+  let direction = ''
   let nextPosition = []
   let steps = 0
+  let startTube = {hasUp: false, hasDown: false, hasLeft: false, hasRight: false, isLetter: ''}
+
+  if (tubeMap[currentPosition[0] - 1][currentPosition[1]] === '|' || tubeMap[currentPosition[0] - 1][currentPosition[1]] === 'F' || tubeMap[currentPosition[0] - 1][currentPosition[1]] === '7') {
+    direction = 'up'
+    nextPosition = [currentPosition[0] - 1, currentPosition[1]]
+    startTube.hasUp = true
+  }
+  if (tubeMap[currentPosition[0] + 1][currentPosition[1]] === '|' || tubeMap[currentPosition[0] + 1][currentPosition[1]] === 'L' || tubeMap[currentPosition[0] + 1][currentPosition[1]] === 'J') {
+    direction = 'down'
+    nextPosition = [currentPosition[0] + 1, currentPosition[1]]
+    startTube.hasDown = true
+  }
+  if (tubeMap[currentPosition[0]][currentPosition[1] - 1] === '-' || tubeMap[currentPosition[0]][currentPosition[1] - 1] === 'F' || tubeMap[currentPosition[0]][currentPosition[1] - 1] === 'L') {
+    direction = 'left'
+    nextPosition = [currentPosition[0], currentPosition[1] - 1]
+    startTube.hasLeft = true
+  }
+  if (tubeMap[currentPosition[0]][currentPosition[1] + 1] === '-' || tubeMap[currentPosition[0]][currentPosition[1] + 1] === '7' || tubeMap[currentPosition[0]][currentPosition[1] + 1] === 'J') {
+    direction = 'right'
+    nextPosition = [currentPosition[0], currentPosition[1] + 1]
+    startTube.hasRight = true
+  }
+
+  if (startTube.hasUp && startTube.hasDown) {
+    startTube.isLetter = '|'
+  }
+  if (startTube.hasLeft && startTube.hasRight) {
+    startTube.isLetter = '-'
+  }
+  if (startTube.hasUp && startTube.hasRight) {
+    startTube.isLetter = 'L'
+  }
+  if (startTube.hasUp && startTube.hasLeft) {
+    startTube.isLetter = 'J'
+  }
+  if (startTube.hasDown && startTube.hasRight) {
+    startTube.isLetter = 'F'
+  }
+  if (startTube.hasDown && startTube.hasLeft) {
+    startTube.isLetter = '7'
+  }
+
+
+  let tubes = {}
 
   while (true) {
     const [y, x] = currentPosition
@@ -115,7 +158,7 @@ function findFarthestPoint(tubeMap, startPosition) {
     }
     if (currentTube === 'S' && steps > 0) {
       console.log('found start again')
-      return steps/2
+      return [steps, tubes, startTube.isLetter]
     }
 
     if (direction === 'up') {
@@ -131,7 +174,7 @@ function findFarthestPoint(tubeMap, startPosition) {
       nextPosition = [y, x + 1]
     }
 
-
+    tubes[currentPosition] = currentTube
     currentPosition = nextPosition
     steps++
   }
@@ -142,8 +185,8 @@ function answerPartOne() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
   const [tubeMap, startPosition] = getTubeMap(lines)
-  const steps = findFarthestPoint(tubeMap, startPosition)
-  console.log(steps)
+  const [steps, tubes, startLetter] = findFarthestPoint(tubeMap, startPosition)
+  console.log(steps/2)
 }
 
 console.log("Part one:")
