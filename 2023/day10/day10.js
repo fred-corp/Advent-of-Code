@@ -195,10 +195,46 @@ timedAnswerPartOne()
 
 console.log()
 
+function findEnclosedTiles(tubeMap, tubes, startLetter) {
+  let enclosedTiles = []
+  for(y = 0; y < tubeMap.length; y++) {
+    let inside = false
+    let tubeCount = 0
+    let previousTube = ''
+    for(x = 0; x < tubeMap[y].length; x++) {
+      // check if we are within % 2 of a tube in tubes
+      let tube = tubes[[y, x]]
+      if (tube !== undefined && tube !== '-') {
+        if (tube === 'S') {
+          tube = startLetter
+        }
+        tubeCount++
+        if ((tube === 'J' && previousTube === 'F') || (tube === '7' && previousTube === 'L')) {
+          tubeCount--
+        }
+        previousTube = tube
+        if (tubeCount % 2 === 1) {
+          inside = true
+        } else {
+          inside = false
+        }
+      }
+      if (inside && tube === undefined) {
+        enclosedTiles.push([y, x])
+      }
+    }
+  }
+
+  return enclosedTiles.length
+}
+
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const [tubeMap, startPosition] = getTubeMap(lines)
+  const [steps, tubes, startLetter] = findFarthestPoint(tubeMap, startPosition)
+  const enclosedTiles = findEnclosedTiles(tubeMap, tubes, startLetter)
+  console.log(enclosedTiles)
 }
 
 console.log("Part two:")
