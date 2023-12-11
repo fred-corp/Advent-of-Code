@@ -1,4 +1,4 @@
-# --- Day 11: \<name of challenge\> ---
+# --- Day 11: Cosmic Expansion ---
 
 ## Solution
 
