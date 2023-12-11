@@ -2,9 +2,11 @@
 // https://adventofcode.com/2023/day/11
 //
 // Part one :
-//
+// Calculate the distance between all pairs of galaxies in
+// the universe after expanding the empty rows and columns by 2.
 //
 // Part two :
+// Same, but this time the expansion is by 1000000
 //
 //
 // Solution by Frédéric Druppel
