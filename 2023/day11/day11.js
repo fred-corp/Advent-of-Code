@@ -115,7 +115,7 @@ function answerPartOne() {
   const galaxies = findGalaxies(universe)
   const galaxyPairs = getGalaxyPairs(galaxies)
   const distanceSums = findDistanceSums(galaxyPairs)
-  console.log(distanceSums)
+  console.log(`The sum of the Manhattan distances is ${distanceSums}`)
 }
 
 console.log("Part one:")
@@ -181,7 +181,7 @@ function answerPartTwo() {
   const galaxyPairs = getGalaxyPairs(galaxies)
   const expandedRowsCols = findExpandedRowsCols(universe)
   const distanceSums = findDistanceSumsWithoutExpanding(galaxyPairs, expandedRowsCols, 1000000)
-  console.log(distanceSums)
+  console.log(`The sum of distances in a super expanded universe is ${distanceSums}`)
 }
 
 console.log("Part two:")
