@@ -86,10 +86,58 @@ timedAnswerPartOne()
 
 console.log()
 
+let cache = {}
+
+function countMatches(pattern, nums) {
+  if (cache[[pattern, [nums]]]) {
+    return cache[[pattern, [nums]]]
+  }
+
+  let size = nums[0]
+  let total = 0
+
+  if (nums.length === 0) {
+    return pattern.includes("#") ? 0 : 1;
+  }
+  for(let i = 0; i < pattern.length; i++) {
+    if (i + size <= pattern.length 
+      && [...pattern.slice(i, i + size)].every(c => c !== '.') 
+      && (i === 0 || pattern[i - 1] !== '#') 
+      && (i + size === pattern.length || pattern[i + size] !== '#')
+      ) {
+      total += countMatches(pattern.slice(i+size+1), nums.slice(1))
+    }
+    if (pattern[i] === '#') {
+      break
+    }
+  }
+  cache[[pattern, [nums]]] = total
+  return total
+}
+
+function getUnfoldedArrangementsSum(lines, folds) {
+  let answer = 0
+
+  lines.forEach(line => {
+    let [pattern, splits] = line.split(' ')
+    splits = splits.split(',').map(spring => parseInt(spring))
+    let newSplits = splits
+    let newPattern = pattern
+    for (let i = 0; i < folds-1; i++) {
+      newPattern += '?' + pattern
+      newSplits = [].concat(newSplits, splits)
+    }
+    answer += countMatches(newPattern, newSplits)
+  })
+
+  return answer
+}
+
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const arrangementsSum = getUnfoldedArrangementsSum(lines, 5)
+  console.log(arrangementsSum)
 }
 
 console.log("Part two:")
