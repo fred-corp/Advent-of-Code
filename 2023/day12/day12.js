@@ -2,9 +2,10 @@
 // https://adventofcode.com/2023/day/12
 //
 // Part one :
-//
+// Find the number of arrangements that satisfy the given conditions.
 //
 // Part two :
+// Same but this time expand everything 5 times
 //
 //
 // Solution by Frédéric Druppel
