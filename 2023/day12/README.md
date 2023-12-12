@@ -1,4 +1,4 @@
-# --- Day 12: \<name of challenge\> ---
+# --- Day 12: Hot Springs ---
 
 ## Solution
 
