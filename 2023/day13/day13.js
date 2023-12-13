@@ -19,10 +19,89 @@ function parseFile(textFile) {
   return lines
 }
 
+
+function getGroups(lines) {
+  const groups = []
+  let group = []
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i] === "") {
+      groups.push(group)
+      group = []
+    } else {
+      group.push(lines[i])
+    }
+  }
+  groups.push(group)
+  return groups
+}
+
+function findReflection(group) {
+  let symmetry = 0
+
+  for (let depth = 1; depth < group[0].length; depth++) {
+    // check if the pattern is the same forwards and backwards
+    // for each group
+    let same = true
+    for (let j = 0; j < group.length; j++) {
+      let row = group[j]
+      let rowLength = row.length
+      let rowStart = row.substring(0, depth).split("").reverse().join("")
+      let rowStartLength = rowStart.length
+      let rowEnd = row.substring(depth)
+      let rowEndLength = rowEnd.length
+      let minLen = Math.min(rowStartLength, rowEndLength)
+
+      for (let k = 0; k < minLen; k++) {
+        if (rowStart[k] !== rowEnd[k]) {
+          same = false
+          break
+        }
+      }
+    }
+    if (same) {
+      symmetry = depth
+    }
+
+  }
+  return symmetry
+
+}
+
+function checkGroups(groups) {
+  let rowNums = []
+  let colNums = []
+  groups.forEach(group => {
+    let symmetryCol = findReflection(group)
+    
+    let newGroup = []
+    for (let i = 0; i < group[0].length; i++) {
+      let newRow = []
+      for (let j = 0; j < group.length; j++) {
+        newRow.push(group[j][i])
+      }
+      newGroup.push(newRow.join(""))
+    }
+    let symmetryRow = findReflection(newGroup)
+    
+    if (symmetryCol > symmetryRow) {
+      colNums.push(symmetryCol)
+    }
+    else {
+      rowNums.push(symmetryRow)
+    }
+  })
+  let rowSum = rowNums.reduce((a, b) => a + b, 0)*100
+  let colSum = colNums.reduce((a, b) => a + b, 0)
+
+  return rowSum + colSum
+}
+
+
 function answerPartOne() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part one code goes here")
+  const groups = getGroups(lines)
+  console.log(checkGroups(groups))
 }
 
 console.log("Part one:")
