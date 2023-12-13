@@ -2,7 +2,7 @@
 // https://adventofcode.com/2023/day/13
 //
 // Part one :
-//
+// check for horizontal and vertical symmetry in groups of strings
 //
 // Part two :
 //
