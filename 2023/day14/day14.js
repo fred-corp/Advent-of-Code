@@ -63,6 +63,18 @@ function rotateMap(map) {
   return newMap
 }
 
+function rotateMapBack(map) {
+  let newMap = []
+  for (let y = 0; y < map.length; y++) {
+    let column = []
+    for (let x = 0; x < map[y].length; x++) {
+      column.push(map[x][y])
+    }
+    newMap.push(column.reverse())
+  }
+  return newMap
+}
+
 function tiltRight(map) {
   let newMap = []
   map.forEach(line => {
@@ -82,12 +94,11 @@ function tiltRight(map) {
 }
 
 function calculateWeight(map) {
-  let mapCopy = rotateMap(map)
   let weight = 0
-  for (let y = 0; y < mapCopy.length; y++) {
-    const line = mapCopy[y].join('')
+  for (let y = 0; y < map.length; y++) {
+    const line = map[y].join('')
     const countO = line.split('').filter(elem => elem === 'O').length
-    weight += countO * (y + 1)
+    weight += countO * (map.length - y)
   }
   return weight
 }
@@ -96,7 +107,7 @@ function answerPartOne() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
   const map = rotateMap(getMap(lines))
-  const newMap = tiltRight(map)
+  const newMap = rotateMapBack(tiltRight(map))
   const weight = calculateWeight(newMap)
   console.log(weight)
 }
@@ -107,10 +118,50 @@ timedAnswerPartOne()
 
 console.log()
 
+function tiltCycle(map) {
+  let newMap = map
+  newMap = rotateMapBack(newMap)
+  newMap = tiltRight(newMap)
+  newMap = rotateMapBack(newMap)
+  newMap = tiltRight(newMap)
+  newMap = rotateMapBack(newMap)
+  newMap = tiltRight(newMap)
+  newMap = rotateMapBack(newMap)
+  newMap = tiltRight(newMap)
+  
+  return newMap
+}
+
+function calcCycles (map, cycles) {
+  let newMap = rotateMap(rotateMap(map))
+  let i = 0
+  let states = {}
+  while (i < cycles) {
+    // just a bit of memoization to speed things up
+    const joined = newMap.join('')
+    if (states[joined]) {
+      const cycleLength = i - states[joined]
+      const cyclesLeft = cycles - i
+      const cyclesToSkip = cyclesLeft % (cycleLength ** 2)
+      i += cyclesToSkip
+      if (i === cycles) {
+        break
+      }
+    }
+    states[joined] = i
+    newMap = tiltCycle(newMap)
+    i++
+  }
+  newMap = rotateMap(rotateMap(newMap))
+  return calculateWeight(newMap)
+}
+
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const map = getMap(lines)
+  const weight = calcCycles(map, 1000000000)
+  console.log(weight)
 }
 
 console.log("Part two:")
