@@ -1,4 +1,4 @@
-# --- Day 14: \<name of challenge\> ---
+# --- Day 14: Parabolic Reflector Dish ---
 
 ## Solution
 
