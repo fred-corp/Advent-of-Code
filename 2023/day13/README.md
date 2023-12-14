@@ -1,4 +1,4 @@
-# --- Day 13: \<name of challenge\> ---
+# --- Day 13: Point of Incidence ---
 
 ## Solution
 
