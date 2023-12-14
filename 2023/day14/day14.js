@@ -2,32 +2,11 @@
 // https://adventofcode.com/2023/day/14
 //
 // Part one :
-// From an input that looks like this : 
-// O....#....
-// O.OO#....#
-// .....##...
-// OO.#O....O
-// .O.....O#.
-// O.#..O.#.#
-// ..O..#O..O
-// .......O..
-// #....###..
-// #OO..#....
-// Shift all the 'O's to some direction, until they collide with a '#', another 'O' or the edge of the map.
-// Shifting up would look like : 
-// OOOO.#.O..
-// OO..#....#
-// OO..O##..O
-// O..#.OO...
-// ........#.
-// ..#....#.#
-// ..O..#.O.O
-// ..O.......
-// #....###..
-// #....#....
-//
+// From an input grid with 'O's that can roll, shift all the 'O's to "north"
+// direction, until they collide with a '#', another 'O' or the edge of the map.
 //
 // Part two :
+// Same but cycle 100000000 times from north-west-south-east and tilt each time
 //
 //
 // Solution by Frédéric Druppel
