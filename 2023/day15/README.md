@@ -1,4 +1,4 @@
-# --- Day 15: \<name of challenge\> ---
+# --- Day 15: Lens Library ---
 
 ## Solution
 
