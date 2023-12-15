@@ -15,14 +15,30 @@ const fs = require('fs')
 
 function parseFile(textFile) {
   const text = fs.readFileSync(textFile, 'utf8')
-  const lines = text.split('\n')
-  return lines
+  const parts = text.split(',')
+  return parts
+}
+
+function hash(str) {
+  let value = 0
+  str = str.split('')
+  str.forEach(char => {
+    value += char.charCodeAt(0)
+    value *= 17
+    value %= 256
+  })
+
+  return value
 }
 
 function answerPartOne() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
-  const lines = parseFile(fileName)
-  console.log("Part one code goes here")
+  const parts = parseFile(fileName)
+  let sum = 0
+  parts.forEach(part => {
+    sum += hash(part)
+  })
+  console.log(sum)
 }
 
 console.log("Part one:")
