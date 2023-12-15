@@ -67,13 +67,6 @@ function getFocusingPower(data) {
     }
   })
 
-  for (let i = 0; i < 256; i++) {
-    if (!lensMap[i]) {
-      lensMap[i] = {'aa': 0}
-    }
-
-  }
-
   let focusingPower = 0
   Object.keys(lensMap).forEach(box => {
     boxNumber = Number(box)
