@@ -13,5 +13,11 @@ node day15.js puzzleInputTest.txt
 The output (with the specified dataset) should be:
 
 ```zsh
+Part one:
+1320
+The function "answerPartOne" took 0ms to run
 
+Part two:
+145
+The function "answerPartTwo" took 0ms to run
 ```

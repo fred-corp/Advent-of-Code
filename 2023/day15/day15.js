@@ -2,9 +2,10 @@
 // https://adventofcode.com/2023/day/15
 //
 // Part one :
-//
+// Calculate the sum of all hashes of all parts of the input file with a specified hash algorithm.
 //
 // Part two :
+// Get the focusing power of the lens assembly (See AoC website for info)
 //
 //
 // Solution by Frédéric Druppel
