@@ -47,10 +47,49 @@ timedAnswerPartOne()
 
 console.log()
 
+function getFocusingPower(data) {
+  lensMap = {}
+  data.forEach((part, index) => {
+    if (part.includes('=')) {
+      const [label, value] = part.split('=')
+      let val = parseInt(value)
+      if(!lensMap[hash(label)]) {
+        lensMap[hash(label)] = {}
+      }
+      lensMap[hash(label)][label] = val
+    }
+    else if (part.includes('-')) {
+      label = part.slice(0, part.length - 1)
+      if (lensMap[parseInt(hash(label))]) {
+        delete lensMap[parseInt(hash(label))][label]
+      }
+    }
+  })
+
+  for (let i = 0; i < 256; i++) {
+    if (!lensMap[i]) {
+      lensMap[i] = {'aa': 0}
+    }
+
+  }
+
+  let focusingPower = 0
+  Object.keys(lensMap).forEach(box => {
+    boxNumber = Number(box)
+    slotNumber = 0
+    Object.keys(lensMap[box]).forEach(lens => {
+      focusingPower += (boxNumber + 1) * (slotNumber + 1) * lensMap[box][lens]
+      slotNumber++
+    })
+  })
+  
+  return focusingPower
+}
+
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
-  const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const parts = parseFile(fileName)
+  console.log(getFocusingPower(parts))
 }
 
 console.log("Part two:")
