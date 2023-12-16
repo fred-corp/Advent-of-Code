@@ -2,10 +2,11 @@
 // https://adventofcode.com/2023/day/16
 //
 // Part one :
-//
+// Calculate the lit spots on a map by propagating and reflecting 
+// a beam of light
 //
 // Part two :
-//
+// Find the best spot and direction on the edges of the map to get the max lighting
 //
 // Solution by Frédéric Druppel
 // See repo for license
