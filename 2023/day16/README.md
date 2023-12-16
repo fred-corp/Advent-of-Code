@@ -1,4 +1,4 @@
-# --- Day 16: \<name of challenge\> ---
+# --- Day 16: The Floor Will Be Lava ---
 
 ## Solution
 
