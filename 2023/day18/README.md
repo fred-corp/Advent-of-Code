@@ -1,4 +1,4 @@
-# --- Day 18: \<name of challenge\> ---
+# --- Day 18: Lavaduct Lagoon ---
 
 ## Solution
 
