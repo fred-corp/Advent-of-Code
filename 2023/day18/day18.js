@@ -29,19 +29,24 @@ const DIRECTIONS = { "U": UP, "D": DOWN, "L": LEFT, "R": RIGHT }
 function getInstructions(lines) {
   const instructions = []
   lines.forEach(line => {
-    const instruction = line.split(' ')
+    let instruction = line.split(' ')
+    instruction[instruction.length - 1] = instruction[instruction.length - 1].slice(1, -1)
     instructions.push(instruction)
   })
   return instructions
 }
 
 
-function getPerimeter(instructions) {
+function getPerimeter(instructions, partTwo = false) {
   let currentPos = [0, 0]
   let perimeter = [currentPos]
   let length = 0
   instructions.forEach(instruction => {
     let [direction, amount, color] = instruction
+    if (partTwo) {
+      direction = "RDLU"[parseInt(color[color.length - 1])]
+      amount = parseInt(color.slice(1, color.length-1), 16)
+    }
     amount = parseInt(amount)
     perimeter.push([perimeter[perimeter.length - 1][0] + DIRECTIONS[direction][0] * amount, perimeter[perimeter.length - 1][1] + DIRECTIONS[direction][1] * amount])
     length += amount
@@ -62,7 +67,7 @@ function answerPartOne() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
   const instructions = getInstructions(lines)
-  console.log(console.log(getPerimeter(instructions)))
+  console.log(getPerimeter(instructions))
 }
 
 console.log("Part one:")
@@ -74,7 +79,8 @@ console.log()
 function answerPartTwo() {
   const fileName = process.argv[2] ? process.argv[2] : "puzzleInputTest.txt"
   const lines = parseFile(fileName)
-  console.log("Part two code goes here")
+  const instructions = getInstructions(lines)
+  console.log(getPerimeter(instructions, true))
 }
 
 console.log("Part two:")
