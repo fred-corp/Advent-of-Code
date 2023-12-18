@@ -2,9 +2,12 @@
 // https://adventofcode.com/2023/day/18
 //
 // Part one :
-//
+// Get the area inside an arbitrary perimeter
+// defined by a series of instructions
 //
 // Part two :
+// Same, but this time the instructions are
+// encrypted in a hexadecimal color code
 //
 //
 // Solution by Frédéric Druppel
