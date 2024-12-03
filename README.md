@@ -11,6 +11,10 @@ Sometimes the solutions are clean, sometimes they are janky ¯\\\_(ツ)\_/¯
 
 In 2023 I'm choosing to code my solutions in JavaScript. Let's see how that goes !
 
+## 2024
+
+After a late start due to some reports I had to finish before the deadlines, I'm back at it with Swift.
+
 ## Acknowledgements
 
 Made with ❤️, lots of ☕️, and lack of 🛌  
